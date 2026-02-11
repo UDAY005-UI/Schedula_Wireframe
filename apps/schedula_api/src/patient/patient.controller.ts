@@ -1,20 +1,19 @@
-import { Controller, Post, Req, UseGuards, BadRequestException } from "@nestjs/common";
+import { Controller, Post, Req, UseGuards, BadRequestException, Body, ForbiddenException } from "@nestjs/common";
 import { PatientService } from "./patient.service";
 import { JwtAuthGuard } from "src/auth/jwt.guard";
 
 @Controller('patient')
 export class PatientController {
-    constructor(private readonly patientService: PatientService) {}
+    constructor(private readonly patientService: PatientService) { }
 
     @Post('profile')
     @UseGuards(JwtAuthGuard)
-    async createPatientProfile(@Req() req) {
-        const role = req.query.state as 'PATIENT';
+    async createPatientProfile(@Req() req, @Body() body) {
 
-        if(!role) {
-            throw new BadRequestException('role is missing');
+        if (req.user.role !== 'PATIENT') {
+            throw new ForbiddenException('Only patients can create doctor profile');
         }
 
-        return this.patientService.createPatientProfile(req.userId);
+        return this.patientService.createPatientProfile(req.user.sub, body);
     }
 }
