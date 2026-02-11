@@ -1,0 +1,103 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id       String    @id @default(uuid())
+  name     String
+  dob      DateTime?
+  mobileNo String?    @unique
+  gender   String?
+  email    String    @unique
+  googleId String?   @unique
+
+  isVerified Boolean @default(false)
+
+  otpHash     String?
+  otpExpiry   DateTime?
+  otpAttempts Int       @default(0)
+
+  refreshTokenHash String?
+  refreshExpiresAt DateTime?
+
+  role    UserRole
+  patient Patient?
+  doctor  Doctor?
+}
+
+model Patient {
+  id           String        @id @default(uuid())
+  userId       String        @unique
+  name         String
+  dob          DateTime?
+  mobileNo     String?
+  gender       String?
+  appointments Appointment[]
+  user         User          @relation(fields: [userId], references: [id])
+}
+
+model Doctor {
+  id            String             @id @default(uuid())
+  userId        String             @unique
+  name          String
+  experience    Int?
+  fees          Float?
+  profileNote   String?
+  specializesIn String[]
+  services      String[]
+  appointments  Appointment[]
+  slots         AvailabilitySlot[]
+  user          User               @relation(fields: [userId], references: [id])
+}
+
+model AvailabilitySlot {
+  id           String        @id @default(uuid())
+  date         DateTime
+  startTime    DateTime
+  endTime      DateTime
+  sessionType  SessionType
+  doctorId     String
+  appointments Appointment[]
+  doctor       Doctor        @relation(fields: [doctorId], references: [id])
+}
+
+model Appointment {
+  id              String            @id @default(uuid())
+  appointmentDate DateTime
+  appointmentTime DateTime
+  consultingType  String?
+  complaint       String?
+  visitType       String?
+  weight          Float?
+  recordedAge     Int?
+  status          AppointmentStatus
+  patientId       String
+  doctorId        String
+  slotId          String
+  doctor          Doctor            @relation(fields: [doctorId], references: [id])
+  patient         Patient           @relation(fields: [patientId], references: [id])
+  slot            AvailabilitySlot  @relation(fields: [slotId], references: [id])
+}
+
+enum UserRole {
+  PATIENT
+  DOCTOR
+}
+
+enum SessionType {
+  ONLINE
+  OFFLINE
+}
+
+enum AppointmentStatus {
+  BOOKED
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
