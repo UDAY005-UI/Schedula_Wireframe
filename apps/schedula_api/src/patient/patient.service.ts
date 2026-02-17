@@ -5,33 +5,51 @@ import { PrismaService } from "src/prisma/prisma.service";
 export class PatientService {
     constructor(
         private prisma: PrismaService,
-    ) {}
+    ) { }
 
-    async createPatientProfile(userId: string) {
+    async createPatientProfile(userId: string, profile: any) {
         try {
-        const user = await this.prisma.user.findUnique({
-            where: { id: userId },
-        })
+            const user = await this.prisma.user.findUnique({
+                where: { id: userId },
+            })
 
-        if(!user) {
-            throw new NotFoundException('User not found')
-        }
+            if (!user) {
+                throw new NotFoundException('User not found')
+            }
 
-        const patient = await this.prisma.patient.upsert({
-            where: {userId: user.id},
-            update: {},
-            create: {
-                userId: user.id,
-                name: user.name,
-                dob: user.dob,
-                gender: user.gender,
-                mobileNo: user.mobileNo
-            },
-        });
-        
-        return patient;
+            const patient = await this.prisma.$transaction(async (tx) => {
+
+                await tx.user.update({
+                    where: { id: user.id },
+                    data: {
+                        dob: profile.dob,
+                        gender: profile.gender,
+                        mobileNo: profile.mobileNo
+                    }
+                });
+
+                return tx.patient.upsert({
+                    where: { userId: user.id },
+                    update: {
+                        dob: profile.dob,
+                        gender: profile.gender,
+                        mobileNo: profile.mobileNo
+                    },
+                    create: {
+                        userId: user.id,
+                        name: user.name,
+                        dob: profile.dob,
+                        gender: profile.gender,
+                        mobileNo: profile.mobileNo
+                    }
+                });
+
+            });
+
+            return patient;
         } catch (err) {
-            throw new InternalServerErrorException('Failed to create patient profile');
+            console.error(err);
+            throw new InternalServerErrorException(err.message);
         }
     }
 }
