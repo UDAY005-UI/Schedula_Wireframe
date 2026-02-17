@@ -1,4 +1,4 @@
-import { Controller, Post,Req, UseGuards, BadRequestException, Body, ForbiddenException } from "@nestjs/common";
+import { Controller, Post,Req, UseGuards, Body, ForbiddenException } from "@nestjs/common";
 import { DoctorService } from "./doctor.service";
 import { JwtAuthGuard } from "src/auth/jwt.guard";
 
