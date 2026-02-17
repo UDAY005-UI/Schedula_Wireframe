@@ -1015,6 +1015,20 @@ export type ListEnumSessionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$
 
 
 /**
+ * Reference to a field of type 'ConsultingType'
+ */
+export type EnumConsultingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConsultingType'>
+    
+
+
+/**
+ * Reference to a field of type 'ConsultingType[]'
+ */
+export type ListEnumConsultingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConsultingType[]'>
+    
+
+
+/**
  * Reference to a field of type 'AppointmentStatus'
  */
 export type EnumAppointmentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AppointmentStatus'>

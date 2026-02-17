@@ -59,8 +59,8 @@ model Doctor {
 model AvailabilitySlot {
   id           String        @id @default(uuid())
   date         DateTime
-  startTime    DateTime
-  endTime      DateTime
+  startTime    String
+  endTime      String
   sessionType  SessionType
   doctorId     String
   appointments Appointment[]
@@ -70,13 +70,13 @@ model AvailabilitySlot {
 model Appointment {
   id              String            @id @default(uuid())
   appointmentDate DateTime
-  appointmentTime DateTime
-  consultingType  String?
-  complaint       String?
-  visitType       String?
+  appointmentTime String
+  consultingType  ConsultingType
+  complaint       String
+  visitType       String
   weight          Float?
   recordedAge     Int?
-  status          AppointmentStatus
+  status          AppointmentStatus 
   patientId       String
   doctorId        String
   slotId          String
@@ -97,7 +97,12 @@ enum SessionType {
 
 enum AppointmentStatus {
   BOOKED
-  CONFIRMED
   CANCELLED
   COMPLETED
+}
+
+enum ConsultingType {
+  REGULAR
+  REVISIT
+  FOLLOW_UP
 }

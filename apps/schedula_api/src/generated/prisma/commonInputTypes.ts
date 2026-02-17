@@ -263,11 +263,28 @@ export type EnumSessionTypeWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumSessionTypeFilter<$PrismaModel>
 }
 
+export type EnumConsultingTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.ConsultingType | Prisma.EnumConsultingTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.ConsultingType[] | Prisma.ListEnumConsultingTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ConsultingType[] | Prisma.ListEnumConsultingTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumConsultingTypeFilter<$PrismaModel> | $Enums.ConsultingType
+}
+
 export type EnumAppointmentStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.AppointmentStatus | Prisma.EnumAppointmentStatusFieldRefInput<$PrismaModel>
   in?: $Enums.AppointmentStatus[] | Prisma.ListEnumAppointmentStatusFieldRefInput<$PrismaModel>
   notIn?: $Enums.AppointmentStatus[] | Prisma.ListEnumAppointmentStatusFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumAppointmentStatusFilter<$PrismaModel> | $Enums.AppointmentStatus
+}
+
+export type EnumConsultingTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ConsultingType | Prisma.EnumConsultingTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.ConsultingType[] | Prisma.ListEnumConsultingTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ConsultingType[] | Prisma.ListEnumConsultingTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumConsultingTypeWithAggregatesFilter<$PrismaModel> | $Enums.ConsultingType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumConsultingTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumConsultingTypeFilter<$PrismaModel>
 }
 
 export type EnumAppointmentStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -531,11 +548,28 @@ export type NestedEnumSessionTypeWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumSessionTypeFilter<$PrismaModel>
 }
 
+export type NestedEnumConsultingTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.ConsultingType | Prisma.EnumConsultingTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.ConsultingType[] | Prisma.ListEnumConsultingTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ConsultingType[] | Prisma.ListEnumConsultingTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumConsultingTypeFilter<$PrismaModel> | $Enums.ConsultingType
+}
+
 export type NestedEnumAppointmentStatusFilter<$PrismaModel = never> = {
   equals?: $Enums.AppointmentStatus | Prisma.EnumAppointmentStatusFieldRefInput<$PrismaModel>
   in?: $Enums.AppointmentStatus[] | Prisma.ListEnumAppointmentStatusFieldRefInput<$PrismaModel>
   notIn?: $Enums.AppointmentStatus[] | Prisma.ListEnumAppointmentStatusFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumAppointmentStatusFilter<$PrismaModel> | $Enums.AppointmentStatus
+}
+
+export type NestedEnumConsultingTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ConsultingType | Prisma.EnumConsultingTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.ConsultingType[] | Prisma.ListEnumConsultingTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ConsultingType[] | Prisma.ListEnumConsultingTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumConsultingTypeWithAggregatesFilter<$PrismaModel> | $Enums.ConsultingType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumConsultingTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumConsultingTypeFilter<$PrismaModel>
 }
 
 export type NestedEnumAppointmentStatusWithAggregatesFilter<$PrismaModel = never> = {
