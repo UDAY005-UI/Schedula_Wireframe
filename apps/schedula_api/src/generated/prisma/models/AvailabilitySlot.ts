@@ -27,8 +27,8 @@ export type AggregateAvailabilitySlot = {
 export type AvailabilitySlotMinAggregateOutputType = {
   id: string | null
   date: Date | null
-  startTime: Date | null
-  endTime: Date | null
+  startTime: string | null
+  endTime: string | null
   sessionType: $Enums.SessionType | null
   doctorId: string | null
 }
@@ -36,8 +36,8 @@ export type AvailabilitySlotMinAggregateOutputType = {
 export type AvailabilitySlotMaxAggregateOutputType = {
   id: string | null
   date: Date | null
-  startTime: Date | null
-  endTime: Date | null
+  startTime: string | null
+  endTime: string | null
   sessionType: $Enums.SessionType | null
   doctorId: string | null
 }
@@ -156,8 +156,8 @@ export type AvailabilitySlotGroupByArgs<ExtArgs extends runtime.Types.Extensions
 export type AvailabilitySlotGroupByOutputType = {
   id: string
   date: Date
-  startTime: Date
-  endTime: Date
+  startTime: string
+  endTime: string
   sessionType: $Enums.SessionType
   doctorId: string
   _count: AvailabilitySlotCountAggregateOutputType | null
@@ -186,8 +186,8 @@ export type AvailabilitySlotWhereInput = {
   NOT?: Prisma.AvailabilitySlotWhereInput | Prisma.AvailabilitySlotWhereInput[]
   id?: Prisma.StringFilter<"AvailabilitySlot"> | string
   date?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
-  startTime?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
-  endTime?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
+  startTime?: Prisma.StringFilter<"AvailabilitySlot"> | string
+  endTime?: Prisma.StringFilter<"AvailabilitySlot"> | string
   sessionType?: Prisma.EnumSessionTypeFilter<"AvailabilitySlot"> | $Enums.SessionType
   doctorId?: Prisma.StringFilter<"AvailabilitySlot"> | string
   appointments?: Prisma.AppointmentListRelationFilter
@@ -211,8 +211,8 @@ export type AvailabilitySlotWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.AvailabilitySlotWhereInput[]
   NOT?: Prisma.AvailabilitySlotWhereInput | Prisma.AvailabilitySlotWhereInput[]
   date?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
-  startTime?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
-  endTime?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
+  startTime?: Prisma.StringFilter<"AvailabilitySlot"> | string
+  endTime?: Prisma.StringFilter<"AvailabilitySlot"> | string
   sessionType?: Prisma.EnumSessionTypeFilter<"AvailabilitySlot"> | $Enums.SessionType
   doctorId?: Prisma.StringFilter<"AvailabilitySlot"> | string
   appointments?: Prisma.AppointmentListRelationFilter
@@ -237,8 +237,8 @@ export type AvailabilitySlotScalarWhereWithAggregatesInput = {
   NOT?: Prisma.AvailabilitySlotScalarWhereWithAggregatesInput | Prisma.AvailabilitySlotScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"AvailabilitySlot"> | string
   date?: Prisma.DateTimeWithAggregatesFilter<"AvailabilitySlot"> | Date | string
-  startTime?: Prisma.DateTimeWithAggregatesFilter<"AvailabilitySlot"> | Date | string
-  endTime?: Prisma.DateTimeWithAggregatesFilter<"AvailabilitySlot"> | Date | string
+  startTime?: Prisma.StringWithAggregatesFilter<"AvailabilitySlot"> | string
+  endTime?: Prisma.StringWithAggregatesFilter<"AvailabilitySlot"> | string
   sessionType?: Prisma.EnumSessionTypeWithAggregatesFilter<"AvailabilitySlot"> | $Enums.SessionType
   doctorId?: Prisma.StringWithAggregatesFilter<"AvailabilitySlot"> | string
 }
@@ -246,8 +246,8 @@ export type AvailabilitySlotScalarWhereWithAggregatesInput = {
 export type AvailabilitySlotCreateInput = {
   id?: string
   date: Date | string
-  startTime: Date | string
-  endTime: Date | string
+  startTime: string
+  endTime: string
   sessionType: $Enums.SessionType
   appointments?: Prisma.AppointmentCreateNestedManyWithoutSlotInput
   doctor: Prisma.DoctorCreateNestedOneWithoutSlotsInput
@@ -256,8 +256,8 @@ export type AvailabilitySlotCreateInput = {
 export type AvailabilitySlotUncheckedCreateInput = {
   id?: string
   date: Date | string
-  startTime: Date | string
-  endTime: Date | string
+  startTime: string
+  endTime: string
   sessionType: $Enums.SessionType
   doctorId: string
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutSlotInput
@@ -266,8 +266,8 @@ export type AvailabilitySlotUncheckedCreateInput = {
 export type AvailabilitySlotUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   appointments?: Prisma.AppointmentUpdateManyWithoutSlotNestedInput
   doctor?: Prisma.DoctorUpdateOneRequiredWithoutSlotsNestedInput
@@ -276,8 +276,8 @@ export type AvailabilitySlotUpdateInput = {
 export type AvailabilitySlotUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   doctorId?: Prisma.StringFieldUpdateOperationsInput | string
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutSlotNestedInput
@@ -286,8 +286,8 @@ export type AvailabilitySlotUncheckedUpdateInput = {
 export type AvailabilitySlotCreateManyInput = {
   id?: string
   date: Date | string
-  startTime: Date | string
-  endTime: Date | string
+  startTime: string
+  endTime: string
   sessionType: $Enums.SessionType
   doctorId: string
 }
@@ -295,16 +295,16 @@ export type AvailabilitySlotCreateManyInput = {
 export type AvailabilitySlotUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
 }
 
 export type AvailabilitySlotUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   doctorId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -418,8 +418,8 @@ export type AvailabilitySlotUpdateOneRequiredWithoutAppointmentsNestedInput = {
 export type AvailabilitySlotCreateWithoutDoctorInput = {
   id?: string
   date: Date | string
-  startTime: Date | string
-  endTime: Date | string
+  startTime: string
+  endTime: string
   sessionType: $Enums.SessionType
   appointments?: Prisma.AppointmentCreateNestedManyWithoutSlotInput
 }
@@ -427,8 +427,8 @@ export type AvailabilitySlotCreateWithoutDoctorInput = {
 export type AvailabilitySlotUncheckedCreateWithoutDoctorInput = {
   id?: string
   date: Date | string
-  startTime: Date | string
-  endTime: Date | string
+  startTime: string
+  endTime: string
   sessionType: $Enums.SessionType
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutSlotInput
 }
@@ -465,8 +465,8 @@ export type AvailabilitySlotScalarWhereInput = {
   NOT?: Prisma.AvailabilitySlotScalarWhereInput | Prisma.AvailabilitySlotScalarWhereInput[]
   id?: Prisma.StringFilter<"AvailabilitySlot"> | string
   date?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
-  startTime?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
-  endTime?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
+  startTime?: Prisma.StringFilter<"AvailabilitySlot"> | string
+  endTime?: Prisma.StringFilter<"AvailabilitySlot"> | string
   sessionType?: Prisma.EnumSessionTypeFilter<"AvailabilitySlot"> | $Enums.SessionType
   doctorId?: Prisma.StringFilter<"AvailabilitySlot"> | string
 }
@@ -474,8 +474,8 @@ export type AvailabilitySlotScalarWhereInput = {
 export type AvailabilitySlotCreateWithoutAppointmentsInput = {
   id?: string
   date: Date | string
-  startTime: Date | string
-  endTime: Date | string
+  startTime: string
+  endTime: string
   sessionType: $Enums.SessionType
   doctor: Prisma.DoctorCreateNestedOneWithoutSlotsInput
 }
@@ -483,8 +483,8 @@ export type AvailabilitySlotCreateWithoutAppointmentsInput = {
 export type AvailabilitySlotUncheckedCreateWithoutAppointmentsInput = {
   id?: string
   date: Date | string
-  startTime: Date | string
-  endTime: Date | string
+  startTime: string
+  endTime: string
   sessionType: $Enums.SessionType
   doctorId: string
 }
@@ -508,8 +508,8 @@ export type AvailabilitySlotUpdateToOneWithWhereWithoutAppointmentsInput = {
 export type AvailabilitySlotUpdateWithoutAppointmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   doctor?: Prisma.DoctorUpdateOneRequiredWithoutSlotsNestedInput
 }
@@ -517,8 +517,8 @@ export type AvailabilitySlotUpdateWithoutAppointmentsInput = {
 export type AvailabilitySlotUncheckedUpdateWithoutAppointmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   doctorId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -526,16 +526,16 @@ export type AvailabilitySlotUncheckedUpdateWithoutAppointmentsInput = {
 export type AvailabilitySlotCreateManyDoctorInput = {
   id?: string
   date: Date | string
-  startTime: Date | string
-  endTime: Date | string
+  startTime: string
+  endTime: string
   sessionType: $Enums.SessionType
 }
 
 export type AvailabilitySlotUpdateWithoutDoctorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   appointments?: Prisma.AppointmentUpdateManyWithoutSlotNestedInput
 }
@@ -543,8 +543,8 @@ export type AvailabilitySlotUpdateWithoutDoctorInput = {
 export type AvailabilitySlotUncheckedUpdateWithoutDoctorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutSlotNestedInput
 }
@@ -552,8 +552,8 @@ export type AvailabilitySlotUncheckedUpdateWithoutDoctorInput = {
 export type AvailabilitySlotUncheckedUpdateManyWithoutDoctorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
 }
 
@@ -651,8 +651,8 @@ export type $AvailabilitySlotPayload<ExtArgs extends runtime.Types.Extensions.In
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     date: Date
-    startTime: Date
-    endTime: Date
+    startTime: string
+    endTime: string
     sessionType: $Enums.SessionType
     doctorId: string
   }, ExtArgs["result"]["availabilitySlot"]>
@@ -1082,8 +1082,8 @@ export interface Prisma__AvailabilitySlotClient<T, Null = never, ExtArgs extends
 export interface AvailabilitySlotFieldRefs {
   readonly id: Prisma.FieldRef<"AvailabilitySlot", 'String'>
   readonly date: Prisma.FieldRef<"AvailabilitySlot", 'DateTime'>
-  readonly startTime: Prisma.FieldRef<"AvailabilitySlot", 'DateTime'>
-  readonly endTime: Prisma.FieldRef<"AvailabilitySlot", 'DateTime'>
+  readonly startTime: Prisma.FieldRef<"AvailabilitySlot", 'String'>
+  readonly endTime: Prisma.FieldRef<"AvailabilitySlot", 'String'>
   readonly sessionType: Prisma.FieldRef<"AvailabilitySlot", 'SessionType'>
   readonly doctorId: Prisma.FieldRef<"AvailabilitySlot", 'String'>
 }

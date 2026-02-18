@@ -27,9 +27,17 @@ export type SessionType = (typeof SessionType)[keyof typeof SessionType]
 
 export const AppointmentStatus = {
   BOOKED: 'BOOKED',
-  CONFIRMED: 'CONFIRMED',
   CANCELLED: 'CANCELLED',
   COMPLETED: 'COMPLETED'
 } as const
 
 export type AppointmentStatus = (typeof AppointmentStatus)[keyof typeof AppointmentStatus]
+
+
+export const ConsultingType = {
+  REGULAR: 'REGULAR',
+  REVISIT: 'REVISIT',
+  FOLLOW_UP: 'FOLLOW_UP'
+} as const
+
+export type ConsultingType = (typeof ConsultingType)[keyof typeof ConsultingType]

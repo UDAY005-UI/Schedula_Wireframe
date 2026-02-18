@@ -5,6 +5,9 @@ import { AuthModule } from './auth/auth.module';
 import { PatientModule } from './patient/patient.module';
 import { ConfigModule } from "@nestjs/config"
 import { DoctorModule } from './doctor/doctor.module';
+import { AppointmentModule } from './appointment/appointment.module';
+import { AvailabilityModule } from './availability/availability.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -16,6 +19,8 @@ import { DoctorModule } from './doctor/doctor.module';
     AuthModule,
     PatientModule,
     DoctorModule,
+    AppointmentModule,
+    AvailabilityModule,
   ],
 })
 export class AppModule {}
