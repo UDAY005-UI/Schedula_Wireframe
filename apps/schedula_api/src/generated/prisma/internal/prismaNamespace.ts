@@ -388,7 +388,8 @@ export const ModelName = {
   Patient: 'Patient',
   Doctor: 'Doctor',
   AvailabilitySlot: 'AvailabilitySlot',
-  Appointment: 'Appointment'
+  Appointment: 'Appointment',
+  RecurringRule: 'RecurringRule'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -404,7 +405,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "patient" | "doctor" | "availabilitySlot" | "appointment"
+    modelProps: "user" | "patient" | "doctor" | "availabilitySlot" | "appointment" | "recurringRule"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -778,6 +779,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    RecurringRule: {
+      payload: Prisma.$RecurringRulePayload<ExtArgs>
+      fields: Prisma.RecurringRuleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RecurringRuleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecurringRulePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RecurringRuleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecurringRulePayload>
+        }
+        findFirst: {
+          args: Prisma.RecurringRuleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecurringRulePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RecurringRuleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecurringRulePayload>
+        }
+        findMany: {
+          args: Prisma.RecurringRuleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecurringRulePayload>[]
+        }
+        create: {
+          args: Prisma.RecurringRuleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecurringRulePayload>
+        }
+        createMany: {
+          args: Prisma.RecurringRuleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RecurringRuleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecurringRulePayload>[]
+        }
+        delete: {
+          args: Prisma.RecurringRuleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecurringRulePayload>
+        }
+        update: {
+          args: Prisma.RecurringRuleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecurringRulePayload>
+        }
+        deleteMany: {
+          args: Prisma.RecurringRuleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RecurringRuleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RecurringRuleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecurringRulePayload>[]
+        }
+        upsert: {
+          args: Prisma.RecurringRuleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecurringRulePayload>
+        }
+        aggregate: {
+          args: Prisma.RecurringRuleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRecurringRule>
+        }
+        groupBy: {
+          args: Prisma.RecurringRuleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RecurringRuleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RecurringRuleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RecurringRuleCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -865,11 +940,15 @@ export type DoctorScalarFieldEnum = (typeof DoctorScalarFieldEnum)[keyof typeof 
 
 export const AvailabilitySlotScalarFieldEnum = {
   id: 'id',
-  date: 'date',
   startTime: 'startTime',
   endTime: 'endTime',
+  capacity: 'capacity',
+  bookedCount: 'bookedCount',
+  isStream: 'isStream',
+  streamBufferMin: 'streamBufferMin',
   sessionType: 'sessionType',
-  doctorId: 'doctorId'
+  doctorId: 'doctorId',
+  ruleId: 'ruleId'
 } as const
 
 export type AvailabilitySlotScalarFieldEnum = (typeof AvailabilitySlotScalarFieldEnum)[keyof typeof AvailabilitySlotScalarFieldEnum]
@@ -891,6 +970,23 @@ export const AppointmentScalarFieldEnum = {
 } as const
 
 export type AppointmentScalarFieldEnum = (typeof AppointmentScalarFieldEnum)[keyof typeof AppointmentScalarFieldEnum]
+
+
+export const RecurringRuleScalarFieldEnum = {
+  id: 'id',
+  doctorId: 'doctorId',
+  weekdayMask: 'weekdayMask',
+  startMin: 'startMin',
+  endMin: 'endMin',
+  slotSizeMin: 'slotSizeMin',
+  capacity: 'capacity',
+  isStream: 'isStream',
+  validFrom: 'validFrom',
+  validUntil: 'validUntil',
+  sessionType: 'sessionType'
+} as const
+
+export type RecurringRuleScalarFieldEnum = (typeof RecurringRuleScalarFieldEnum)[keyof typeof RecurringRuleScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1141,6 +1237,7 @@ export type GlobalOmitConfig = {
   doctor?: Prisma.DoctorOmit
   availabilitySlot?: Prisma.AvailabilitySlotOmit
   appointment?: Prisma.AppointmentOmit
+  recurringRule?: Prisma.RecurringRuleOmit
 }
 
 /* Types for Logging */

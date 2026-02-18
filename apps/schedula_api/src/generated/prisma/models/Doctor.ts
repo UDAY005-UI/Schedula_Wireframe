@@ -239,6 +239,7 @@ export type DoctorWhereInput = {
   appointments?: Prisma.AppointmentListRelationFilter
   slots?: Prisma.AvailabilitySlotListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  recurringRules?: Prisma.RecurringRuleListRelationFilter
 }
 
 export type DoctorOrderByWithRelationInput = {
@@ -253,6 +254,7 @@ export type DoctorOrderByWithRelationInput = {
   appointments?: Prisma.AppointmentOrderByRelationAggregateInput
   slots?: Prisma.AvailabilitySlotOrderByRelationAggregateInput
   user?: Prisma.UserOrderByWithRelationInput
+  recurringRules?: Prisma.RecurringRuleOrderByRelationAggregateInput
 }
 
 export type DoctorWhereUniqueInput = Prisma.AtLeast<{
@@ -270,6 +272,7 @@ export type DoctorWhereUniqueInput = Prisma.AtLeast<{
   appointments?: Prisma.AppointmentListRelationFilter
   slots?: Prisma.AvailabilitySlotListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  recurringRules?: Prisma.RecurringRuleListRelationFilter
 }, "id" | "userId">
 
 export type DoctorOrderByWithAggregationInput = {
@@ -313,6 +316,7 @@ export type DoctorCreateInput = {
   appointments?: Prisma.AppointmentCreateNestedManyWithoutDoctorInput
   slots?: Prisma.AvailabilitySlotCreateNestedManyWithoutDoctorInput
   user: Prisma.UserCreateNestedOneWithoutDoctorInput
+  recurringRules?: Prisma.RecurringRuleCreateNestedManyWithoutDoctorInput
 }
 
 export type DoctorUncheckedCreateInput = {
@@ -326,6 +330,7 @@ export type DoctorUncheckedCreateInput = {
   services?: Prisma.DoctorCreateservicesInput | string[]
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutDoctorInput
   slots?: Prisma.AvailabilitySlotUncheckedCreateNestedManyWithoutDoctorInput
+  recurringRules?: Prisma.RecurringRuleUncheckedCreateNestedManyWithoutDoctorInput
 }
 
 export type DoctorUpdateInput = {
@@ -339,6 +344,7 @@ export type DoctorUpdateInput = {
   appointments?: Prisma.AppointmentUpdateManyWithoutDoctorNestedInput
   slots?: Prisma.AvailabilitySlotUpdateManyWithoutDoctorNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutDoctorNestedInput
+  recurringRules?: Prisma.RecurringRuleUpdateManyWithoutDoctorNestedInput
 }
 
 export type DoctorUncheckedUpdateInput = {
@@ -352,6 +358,7 @@ export type DoctorUncheckedUpdateInput = {
   services?: Prisma.DoctorUpdateservicesInput | string[]
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutDoctorNestedInput
   slots?: Prisma.AvailabilitySlotUncheckedUpdateManyWithoutDoctorNestedInput
+  recurringRules?: Prisma.RecurringRuleUncheckedUpdateManyWithoutDoctorNestedInput
 }
 
 export type DoctorCreateManyInput = {
@@ -537,6 +544,20 @@ export type DoctorUpdateOneRequiredWithoutAppointmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DoctorUpdateToOneWithWhereWithoutAppointmentsInput, Prisma.DoctorUpdateWithoutAppointmentsInput>, Prisma.DoctorUncheckedUpdateWithoutAppointmentsInput>
 }
 
+export type DoctorCreateNestedOneWithoutRecurringRulesInput = {
+  create?: Prisma.XOR<Prisma.DoctorCreateWithoutRecurringRulesInput, Prisma.DoctorUncheckedCreateWithoutRecurringRulesInput>
+  connectOrCreate?: Prisma.DoctorCreateOrConnectWithoutRecurringRulesInput
+  connect?: Prisma.DoctorWhereUniqueInput
+}
+
+export type DoctorUpdateOneRequiredWithoutRecurringRulesNestedInput = {
+  create?: Prisma.XOR<Prisma.DoctorCreateWithoutRecurringRulesInput, Prisma.DoctorUncheckedCreateWithoutRecurringRulesInput>
+  connectOrCreate?: Prisma.DoctorCreateOrConnectWithoutRecurringRulesInput
+  upsert?: Prisma.DoctorUpsertWithoutRecurringRulesInput
+  connect?: Prisma.DoctorWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DoctorUpdateToOneWithWhereWithoutRecurringRulesInput, Prisma.DoctorUpdateWithoutRecurringRulesInput>, Prisma.DoctorUncheckedUpdateWithoutRecurringRulesInput>
+}
+
 export type DoctorCreateWithoutUserInput = {
   id?: string
   name: string
@@ -547,6 +568,7 @@ export type DoctorCreateWithoutUserInput = {
   services?: Prisma.DoctorCreateservicesInput | string[]
   appointments?: Prisma.AppointmentCreateNestedManyWithoutDoctorInput
   slots?: Prisma.AvailabilitySlotCreateNestedManyWithoutDoctorInput
+  recurringRules?: Prisma.RecurringRuleCreateNestedManyWithoutDoctorInput
 }
 
 export type DoctorUncheckedCreateWithoutUserInput = {
@@ -559,6 +581,7 @@ export type DoctorUncheckedCreateWithoutUserInput = {
   services?: Prisma.DoctorCreateservicesInput | string[]
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutDoctorInput
   slots?: Prisma.AvailabilitySlotUncheckedCreateNestedManyWithoutDoctorInput
+  recurringRules?: Prisma.RecurringRuleUncheckedCreateNestedManyWithoutDoctorInput
 }
 
 export type DoctorCreateOrConnectWithoutUserInput = {
@@ -587,6 +610,7 @@ export type DoctorUpdateWithoutUserInput = {
   services?: Prisma.DoctorUpdateservicesInput | string[]
   appointments?: Prisma.AppointmentUpdateManyWithoutDoctorNestedInput
   slots?: Prisma.AvailabilitySlotUpdateManyWithoutDoctorNestedInput
+  recurringRules?: Prisma.RecurringRuleUpdateManyWithoutDoctorNestedInput
 }
 
 export type DoctorUncheckedUpdateWithoutUserInput = {
@@ -599,6 +623,7 @@ export type DoctorUncheckedUpdateWithoutUserInput = {
   services?: Prisma.DoctorUpdateservicesInput | string[]
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutDoctorNestedInput
   slots?: Prisma.AvailabilitySlotUncheckedUpdateManyWithoutDoctorNestedInput
+  recurringRules?: Prisma.RecurringRuleUncheckedUpdateManyWithoutDoctorNestedInput
 }
 
 export type DoctorCreateWithoutSlotsInput = {
@@ -611,6 +636,7 @@ export type DoctorCreateWithoutSlotsInput = {
   services?: Prisma.DoctorCreateservicesInput | string[]
   appointments?: Prisma.AppointmentCreateNestedManyWithoutDoctorInput
   user: Prisma.UserCreateNestedOneWithoutDoctorInput
+  recurringRules?: Prisma.RecurringRuleCreateNestedManyWithoutDoctorInput
 }
 
 export type DoctorUncheckedCreateWithoutSlotsInput = {
@@ -623,6 +649,7 @@ export type DoctorUncheckedCreateWithoutSlotsInput = {
   specializesIn?: Prisma.DoctorCreatespecializesInInput | string[]
   services?: Prisma.DoctorCreateservicesInput | string[]
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutDoctorInput
+  recurringRules?: Prisma.RecurringRuleUncheckedCreateNestedManyWithoutDoctorInput
 }
 
 export type DoctorCreateOrConnectWithoutSlotsInput = {
@@ -651,6 +678,7 @@ export type DoctorUpdateWithoutSlotsInput = {
   services?: Prisma.DoctorUpdateservicesInput | string[]
   appointments?: Prisma.AppointmentUpdateManyWithoutDoctorNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutDoctorNestedInput
+  recurringRules?: Prisma.RecurringRuleUpdateManyWithoutDoctorNestedInput
 }
 
 export type DoctorUncheckedUpdateWithoutSlotsInput = {
@@ -663,6 +691,7 @@ export type DoctorUncheckedUpdateWithoutSlotsInput = {
   specializesIn?: Prisma.DoctorUpdatespecializesInInput | string[]
   services?: Prisma.DoctorUpdateservicesInput | string[]
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutDoctorNestedInput
+  recurringRules?: Prisma.RecurringRuleUncheckedUpdateManyWithoutDoctorNestedInput
 }
 
 export type DoctorCreateWithoutAppointmentsInput = {
@@ -675,6 +704,7 @@ export type DoctorCreateWithoutAppointmentsInput = {
   services?: Prisma.DoctorCreateservicesInput | string[]
   slots?: Prisma.AvailabilitySlotCreateNestedManyWithoutDoctorInput
   user: Prisma.UserCreateNestedOneWithoutDoctorInput
+  recurringRules?: Prisma.RecurringRuleCreateNestedManyWithoutDoctorInput
 }
 
 export type DoctorUncheckedCreateWithoutAppointmentsInput = {
@@ -687,6 +717,7 @@ export type DoctorUncheckedCreateWithoutAppointmentsInput = {
   specializesIn?: Prisma.DoctorCreatespecializesInInput | string[]
   services?: Prisma.DoctorCreateservicesInput | string[]
   slots?: Prisma.AvailabilitySlotUncheckedCreateNestedManyWithoutDoctorInput
+  recurringRules?: Prisma.RecurringRuleUncheckedCreateNestedManyWithoutDoctorInput
 }
 
 export type DoctorCreateOrConnectWithoutAppointmentsInput = {
@@ -715,6 +746,7 @@ export type DoctorUpdateWithoutAppointmentsInput = {
   services?: Prisma.DoctorUpdateservicesInput | string[]
   slots?: Prisma.AvailabilitySlotUpdateManyWithoutDoctorNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutDoctorNestedInput
+  recurringRules?: Prisma.RecurringRuleUpdateManyWithoutDoctorNestedInput
 }
 
 export type DoctorUncheckedUpdateWithoutAppointmentsInput = {
@@ -727,6 +759,75 @@ export type DoctorUncheckedUpdateWithoutAppointmentsInput = {
   specializesIn?: Prisma.DoctorUpdatespecializesInInput | string[]
   services?: Prisma.DoctorUpdateservicesInput | string[]
   slots?: Prisma.AvailabilitySlotUncheckedUpdateManyWithoutDoctorNestedInput
+  recurringRules?: Prisma.RecurringRuleUncheckedUpdateManyWithoutDoctorNestedInput
+}
+
+export type DoctorCreateWithoutRecurringRulesInput = {
+  id?: string
+  name: string
+  experience?: number | null
+  fees?: number | null
+  profileNote?: string | null
+  specializesIn?: Prisma.DoctorCreatespecializesInInput | string[]
+  services?: Prisma.DoctorCreateservicesInput | string[]
+  appointments?: Prisma.AppointmentCreateNestedManyWithoutDoctorInput
+  slots?: Prisma.AvailabilitySlotCreateNestedManyWithoutDoctorInput
+  user: Prisma.UserCreateNestedOneWithoutDoctorInput
+}
+
+export type DoctorUncheckedCreateWithoutRecurringRulesInput = {
+  id?: string
+  userId: string
+  name: string
+  experience?: number | null
+  fees?: number | null
+  profileNote?: string | null
+  specializesIn?: Prisma.DoctorCreatespecializesInInput | string[]
+  services?: Prisma.DoctorCreateservicesInput | string[]
+  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutDoctorInput
+  slots?: Prisma.AvailabilitySlotUncheckedCreateNestedManyWithoutDoctorInput
+}
+
+export type DoctorCreateOrConnectWithoutRecurringRulesInput = {
+  where: Prisma.DoctorWhereUniqueInput
+  create: Prisma.XOR<Prisma.DoctorCreateWithoutRecurringRulesInput, Prisma.DoctorUncheckedCreateWithoutRecurringRulesInput>
+}
+
+export type DoctorUpsertWithoutRecurringRulesInput = {
+  update: Prisma.XOR<Prisma.DoctorUpdateWithoutRecurringRulesInput, Prisma.DoctorUncheckedUpdateWithoutRecurringRulesInput>
+  create: Prisma.XOR<Prisma.DoctorCreateWithoutRecurringRulesInput, Prisma.DoctorUncheckedCreateWithoutRecurringRulesInput>
+  where?: Prisma.DoctorWhereInput
+}
+
+export type DoctorUpdateToOneWithWhereWithoutRecurringRulesInput = {
+  where?: Prisma.DoctorWhereInput
+  data: Prisma.XOR<Prisma.DoctorUpdateWithoutRecurringRulesInput, Prisma.DoctorUncheckedUpdateWithoutRecurringRulesInput>
+}
+
+export type DoctorUpdateWithoutRecurringRulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fees?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  profileNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  specializesIn?: Prisma.DoctorUpdatespecializesInInput | string[]
+  services?: Prisma.DoctorUpdateservicesInput | string[]
+  appointments?: Prisma.AppointmentUpdateManyWithoutDoctorNestedInput
+  slots?: Prisma.AvailabilitySlotUpdateManyWithoutDoctorNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutDoctorNestedInput
+}
+
+export type DoctorUncheckedUpdateWithoutRecurringRulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  fees?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  profileNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  specializesIn?: Prisma.DoctorUpdatespecializesInInput | string[]
+  services?: Prisma.DoctorUpdateservicesInput | string[]
+  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutDoctorNestedInput
+  slots?: Prisma.AvailabilitySlotUncheckedUpdateManyWithoutDoctorNestedInput
 }
 
 
@@ -737,11 +838,13 @@ export type DoctorUncheckedUpdateWithoutAppointmentsInput = {
 export type DoctorCountOutputType = {
   appointments: number
   slots: number
+  recurringRules: number
 }
 
 export type DoctorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   appointments?: boolean | DoctorCountOutputTypeCountAppointmentsArgs
   slots?: boolean | DoctorCountOutputTypeCountSlotsArgs
+  recurringRules?: boolean | DoctorCountOutputTypeCountRecurringRulesArgs
 }
 
 /**
@@ -768,6 +871,13 @@ export type DoctorCountOutputTypeCountSlotsArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.AvailabilitySlotWhereInput
 }
 
+/**
+ * DoctorCountOutputType without action
+ */
+export type DoctorCountOutputTypeCountRecurringRulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RecurringRuleWhereInput
+}
+
 
 export type DoctorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -781,6 +891,7 @@ export type DoctorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   appointments?: boolean | Prisma.Doctor$appointmentsArgs<ExtArgs>
   slots?: boolean | Prisma.Doctor$slotsArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  recurringRules?: boolean | Prisma.Doctor$recurringRulesArgs<ExtArgs>
   _count?: boolean | Prisma.DoctorCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["doctor"]>
 
@@ -824,6 +935,7 @@ export type DoctorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   appointments?: boolean | Prisma.Doctor$appointmentsArgs<ExtArgs>
   slots?: boolean | Prisma.Doctor$slotsArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  recurringRules?: boolean | Prisma.Doctor$recurringRulesArgs<ExtArgs>
   _count?: boolean | Prisma.DoctorCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DoctorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -839,6 +951,7 @@ export type $DoctorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     appointments: Prisma.$AppointmentPayload<ExtArgs>[]
     slots: Prisma.$AvailabilitySlotPayload<ExtArgs>[]
     user: Prisma.$UserPayload<ExtArgs>
+    recurringRules: Prisma.$RecurringRulePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1246,6 +1359,7 @@ export interface Prisma__DoctorClient<T, Null = never, ExtArgs extends runtime.T
   appointments<T extends Prisma.Doctor$appointmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Doctor$appointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   slots<T extends Prisma.Doctor$slotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Doctor$slotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AvailabilitySlotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  recurringRules<T extends Prisma.Doctor$recurringRulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Doctor$recurringRulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RecurringRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1724,6 +1838,30 @@ export type Doctor$slotsArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.AvailabilitySlotScalarFieldEnum | Prisma.AvailabilitySlotScalarFieldEnum[]
+}
+
+/**
+ * Doctor.recurringRules
+ */
+export type Doctor$recurringRulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RecurringRule
+   */
+  select?: Prisma.RecurringRuleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RecurringRule
+   */
+  omit?: Prisma.RecurringRuleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RecurringRuleInclude<ExtArgs> | null
+  where?: Prisma.RecurringRuleWhereInput
+  orderBy?: Prisma.RecurringRuleOrderByWithRelationInput | Prisma.RecurringRuleOrderByWithRelationInput[]
+  cursor?: Prisma.RecurringRuleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RecurringRuleScalarFieldEnum | Prisma.RecurringRuleScalarFieldEnum[]
 }
 
 /**

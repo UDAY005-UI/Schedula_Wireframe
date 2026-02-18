@@ -42,3 +42,8 @@ export type AvailabilitySlot = Prisma.AvailabilitySlotModel
  * 
  */
 export type Appointment = Prisma.AppointmentModel
+/**
+ * Model RecurringRule
+ * 
+ */
+export type RecurringRule = Prisma.RecurringRuleModel

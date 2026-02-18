@@ -39,7 +39,7 @@ export type AppointmentSumAggregateOutputType = {
 export type AppointmentMinAggregateOutputType = {
   id: string | null
   appointmentDate: Date | null
-  appointmentTime: string | null
+  appointmentTime: Date | null
   consultingType: $Enums.ConsultingType | null
   complaint: string | null
   visitType: string | null
@@ -54,7 +54,7 @@ export type AppointmentMinAggregateOutputType = {
 export type AppointmentMaxAggregateOutputType = {
   id: string | null
   appointmentDate: Date | null
-  appointmentTime: string | null
+  appointmentTime: Date | null
   consultingType: $Enums.ConsultingType | null
   complaint: string | null
   visitType: string | null
@@ -228,7 +228,7 @@ export type AppointmentGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 export type AppointmentGroupByOutputType = {
   id: string
   appointmentDate: Date
-  appointmentTime: string
+  appointmentTime: Date
   consultingType: $Enums.ConsultingType
   complaint: string
   visitType: string
@@ -266,7 +266,7 @@ export type AppointmentWhereInput = {
   NOT?: Prisma.AppointmentWhereInput | Prisma.AppointmentWhereInput[]
   id?: Prisma.StringFilter<"Appointment"> | string
   appointmentDate?: Prisma.DateTimeFilter<"Appointment"> | Date | string
-  appointmentTime?: Prisma.StringFilter<"Appointment"> | string
+  appointmentTime?: Prisma.DateTimeFilter<"Appointment"> | Date | string
   consultingType?: Prisma.EnumConsultingTypeFilter<"Appointment"> | $Enums.ConsultingType
   complaint?: Prisma.StringFilter<"Appointment"> | string
   visitType?: Prisma.StringFilter<"Appointment"> | string
@@ -305,7 +305,7 @@ export type AppointmentWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.AppointmentWhereInput[]
   NOT?: Prisma.AppointmentWhereInput | Prisma.AppointmentWhereInput[]
   appointmentDate?: Prisma.DateTimeFilter<"Appointment"> | Date | string
-  appointmentTime?: Prisma.StringFilter<"Appointment"> | string
+  appointmentTime?: Prisma.DateTimeFilter<"Appointment"> | Date | string
   consultingType?: Prisma.EnumConsultingTypeFilter<"Appointment"> | $Enums.ConsultingType
   complaint?: Prisma.StringFilter<"Appointment"> | string
   visitType?: Prisma.StringFilter<"Appointment"> | string
@@ -346,7 +346,7 @@ export type AppointmentScalarWhereWithAggregatesInput = {
   NOT?: Prisma.AppointmentScalarWhereWithAggregatesInput | Prisma.AppointmentScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Appointment"> | string
   appointmentDate?: Prisma.DateTimeWithAggregatesFilter<"Appointment"> | Date | string
-  appointmentTime?: Prisma.StringWithAggregatesFilter<"Appointment"> | string
+  appointmentTime?: Prisma.DateTimeWithAggregatesFilter<"Appointment"> | Date | string
   consultingType?: Prisma.EnumConsultingTypeWithAggregatesFilter<"Appointment"> | $Enums.ConsultingType
   complaint?: Prisma.StringWithAggregatesFilter<"Appointment"> | string
   visitType?: Prisma.StringWithAggregatesFilter<"Appointment"> | string
@@ -361,7 +361,7 @@ export type AppointmentScalarWhereWithAggregatesInput = {
 export type AppointmentCreateInput = {
   id?: string
   appointmentDate: Date | string
-  appointmentTime: string
+  appointmentTime: Date | string
   consultingType: $Enums.ConsultingType
   complaint: string
   visitType: string
@@ -376,7 +376,7 @@ export type AppointmentCreateInput = {
 export type AppointmentUncheckedCreateInput = {
   id?: string
   appointmentDate: Date | string
-  appointmentTime: string
+  appointmentTime: Date | string
   consultingType: $Enums.ConsultingType
   complaint: string
   visitType: string
@@ -391,7 +391,7 @@ export type AppointmentUncheckedCreateInput = {
 export type AppointmentUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   appointmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentTime?: Prisma.StringFieldUpdateOperationsInput | string
+  appointmentTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   consultingType?: Prisma.EnumConsultingTypeFieldUpdateOperationsInput | $Enums.ConsultingType
   complaint?: Prisma.StringFieldUpdateOperationsInput | string
   visitType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -406,7 +406,7 @@ export type AppointmentUpdateInput = {
 export type AppointmentUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   appointmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentTime?: Prisma.StringFieldUpdateOperationsInput | string
+  appointmentTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   consultingType?: Prisma.EnumConsultingTypeFieldUpdateOperationsInput | $Enums.ConsultingType
   complaint?: Prisma.StringFieldUpdateOperationsInput | string
   visitType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -421,7 +421,7 @@ export type AppointmentUncheckedUpdateInput = {
 export type AppointmentCreateManyInput = {
   id?: string
   appointmentDate: Date | string
-  appointmentTime: string
+  appointmentTime: Date | string
   consultingType: $Enums.ConsultingType
   complaint: string
   visitType: string
@@ -436,7 +436,7 @@ export type AppointmentCreateManyInput = {
 export type AppointmentUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   appointmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentTime?: Prisma.StringFieldUpdateOperationsInput | string
+  appointmentTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   consultingType?: Prisma.EnumConsultingTypeFieldUpdateOperationsInput | $Enums.ConsultingType
   complaint?: Prisma.StringFieldUpdateOperationsInput | string
   visitType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -448,7 +448,7 @@ export type AppointmentUpdateManyMutationInput = {
 export type AppointmentUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   appointmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentTime?: Prisma.StringFieldUpdateOperationsInput | string
+  appointmentTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   consultingType?: Prisma.EnumConsultingTypeFieldUpdateOperationsInput | $Enums.ConsultingType
   complaint?: Prisma.StringFieldUpdateOperationsInput | string
   visitType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -662,7 +662,7 @@ export type EnumAppointmentStatusFieldUpdateOperationsInput = {
 export type AppointmentCreateWithoutPatientInput = {
   id?: string
   appointmentDate: Date | string
-  appointmentTime: string
+  appointmentTime: Date | string
   consultingType: $Enums.ConsultingType
   complaint: string
   visitType: string
@@ -676,7 +676,7 @@ export type AppointmentCreateWithoutPatientInput = {
 export type AppointmentUncheckedCreateWithoutPatientInput = {
   id?: string
   appointmentDate: Date | string
-  appointmentTime: string
+  appointmentTime: Date | string
   consultingType: $Enums.ConsultingType
   complaint: string
   visitType: string
@@ -719,7 +719,7 @@ export type AppointmentScalarWhereInput = {
   NOT?: Prisma.AppointmentScalarWhereInput | Prisma.AppointmentScalarWhereInput[]
   id?: Prisma.StringFilter<"Appointment"> | string
   appointmentDate?: Prisma.DateTimeFilter<"Appointment"> | Date | string
-  appointmentTime?: Prisma.StringFilter<"Appointment"> | string
+  appointmentTime?: Prisma.DateTimeFilter<"Appointment"> | Date | string
   consultingType?: Prisma.EnumConsultingTypeFilter<"Appointment"> | $Enums.ConsultingType
   complaint?: Prisma.StringFilter<"Appointment"> | string
   visitType?: Prisma.StringFilter<"Appointment"> | string
@@ -734,7 +734,7 @@ export type AppointmentScalarWhereInput = {
 export type AppointmentCreateWithoutDoctorInput = {
   id?: string
   appointmentDate: Date | string
-  appointmentTime: string
+  appointmentTime: Date | string
   consultingType: $Enums.ConsultingType
   complaint: string
   visitType: string
@@ -748,7 +748,7 @@ export type AppointmentCreateWithoutDoctorInput = {
 export type AppointmentUncheckedCreateWithoutDoctorInput = {
   id?: string
   appointmentDate: Date | string
-  appointmentTime: string
+  appointmentTime: Date | string
   consultingType: $Enums.ConsultingType
   complaint: string
   visitType: string
@@ -788,7 +788,7 @@ export type AppointmentUpdateManyWithWhereWithoutDoctorInput = {
 export type AppointmentCreateWithoutSlotInput = {
   id?: string
   appointmentDate: Date | string
-  appointmentTime: string
+  appointmentTime: Date | string
   consultingType: $Enums.ConsultingType
   complaint: string
   visitType: string
@@ -802,7 +802,7 @@ export type AppointmentCreateWithoutSlotInput = {
 export type AppointmentUncheckedCreateWithoutSlotInput = {
   id?: string
   appointmentDate: Date | string
-  appointmentTime: string
+  appointmentTime: Date | string
   consultingType: $Enums.ConsultingType
   complaint: string
   visitType: string
@@ -842,7 +842,7 @@ export type AppointmentUpdateManyWithWhereWithoutSlotInput = {
 export type AppointmentCreateManyPatientInput = {
   id?: string
   appointmentDate: Date | string
-  appointmentTime: string
+  appointmentTime: Date | string
   consultingType: $Enums.ConsultingType
   complaint: string
   visitType: string
@@ -856,7 +856,7 @@ export type AppointmentCreateManyPatientInput = {
 export type AppointmentUpdateWithoutPatientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   appointmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentTime?: Prisma.StringFieldUpdateOperationsInput | string
+  appointmentTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   consultingType?: Prisma.EnumConsultingTypeFieldUpdateOperationsInput | $Enums.ConsultingType
   complaint?: Prisma.StringFieldUpdateOperationsInput | string
   visitType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -870,7 +870,7 @@ export type AppointmentUpdateWithoutPatientInput = {
 export type AppointmentUncheckedUpdateWithoutPatientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   appointmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentTime?: Prisma.StringFieldUpdateOperationsInput | string
+  appointmentTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   consultingType?: Prisma.EnumConsultingTypeFieldUpdateOperationsInput | $Enums.ConsultingType
   complaint?: Prisma.StringFieldUpdateOperationsInput | string
   visitType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -884,7 +884,7 @@ export type AppointmentUncheckedUpdateWithoutPatientInput = {
 export type AppointmentUncheckedUpdateManyWithoutPatientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   appointmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentTime?: Prisma.StringFieldUpdateOperationsInput | string
+  appointmentTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   consultingType?: Prisma.EnumConsultingTypeFieldUpdateOperationsInput | $Enums.ConsultingType
   complaint?: Prisma.StringFieldUpdateOperationsInput | string
   visitType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -898,7 +898,7 @@ export type AppointmentUncheckedUpdateManyWithoutPatientInput = {
 export type AppointmentCreateManyDoctorInput = {
   id?: string
   appointmentDate: Date | string
-  appointmentTime: string
+  appointmentTime: Date | string
   consultingType: $Enums.ConsultingType
   complaint: string
   visitType: string
@@ -912,7 +912,7 @@ export type AppointmentCreateManyDoctorInput = {
 export type AppointmentUpdateWithoutDoctorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   appointmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentTime?: Prisma.StringFieldUpdateOperationsInput | string
+  appointmentTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   consultingType?: Prisma.EnumConsultingTypeFieldUpdateOperationsInput | $Enums.ConsultingType
   complaint?: Prisma.StringFieldUpdateOperationsInput | string
   visitType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -926,7 +926,7 @@ export type AppointmentUpdateWithoutDoctorInput = {
 export type AppointmentUncheckedUpdateWithoutDoctorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   appointmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentTime?: Prisma.StringFieldUpdateOperationsInput | string
+  appointmentTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   consultingType?: Prisma.EnumConsultingTypeFieldUpdateOperationsInput | $Enums.ConsultingType
   complaint?: Prisma.StringFieldUpdateOperationsInput | string
   visitType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -940,7 +940,7 @@ export type AppointmentUncheckedUpdateWithoutDoctorInput = {
 export type AppointmentUncheckedUpdateManyWithoutDoctorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   appointmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentTime?: Prisma.StringFieldUpdateOperationsInput | string
+  appointmentTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   consultingType?: Prisma.EnumConsultingTypeFieldUpdateOperationsInput | $Enums.ConsultingType
   complaint?: Prisma.StringFieldUpdateOperationsInput | string
   visitType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -954,7 +954,7 @@ export type AppointmentUncheckedUpdateManyWithoutDoctorInput = {
 export type AppointmentCreateManySlotInput = {
   id?: string
   appointmentDate: Date | string
-  appointmentTime: string
+  appointmentTime: Date | string
   consultingType: $Enums.ConsultingType
   complaint: string
   visitType: string
@@ -968,7 +968,7 @@ export type AppointmentCreateManySlotInput = {
 export type AppointmentUpdateWithoutSlotInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   appointmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentTime?: Prisma.StringFieldUpdateOperationsInput | string
+  appointmentTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   consultingType?: Prisma.EnumConsultingTypeFieldUpdateOperationsInput | $Enums.ConsultingType
   complaint?: Prisma.StringFieldUpdateOperationsInput | string
   visitType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -982,7 +982,7 @@ export type AppointmentUpdateWithoutSlotInput = {
 export type AppointmentUncheckedUpdateWithoutSlotInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   appointmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentTime?: Prisma.StringFieldUpdateOperationsInput | string
+  appointmentTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   consultingType?: Prisma.EnumConsultingTypeFieldUpdateOperationsInput | $Enums.ConsultingType
   complaint?: Prisma.StringFieldUpdateOperationsInput | string
   visitType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -996,7 +996,7 @@ export type AppointmentUncheckedUpdateWithoutSlotInput = {
 export type AppointmentUncheckedUpdateManyWithoutSlotInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   appointmentDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentTime?: Prisma.StringFieldUpdateOperationsInput | string
+  appointmentTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   consultingType?: Prisma.EnumConsultingTypeFieldUpdateOperationsInput | $Enums.ConsultingType
   complaint?: Prisma.StringFieldUpdateOperationsInput | string
   visitType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1105,7 +1105,7 @@ export type $AppointmentPayload<ExtArgs extends runtime.Types.Extensions.Interna
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     appointmentDate: Date
-    appointmentTime: string
+    appointmentTime: Date
     consultingType: $Enums.ConsultingType
     complaint: string
     visitType: string
@@ -1543,7 +1543,7 @@ export interface Prisma__AppointmentClient<T, Null = never, ExtArgs extends runt
 export interface AppointmentFieldRefs {
   readonly id: Prisma.FieldRef<"Appointment", 'String'>
   readonly appointmentDate: Prisma.FieldRef<"Appointment", 'DateTime'>
-  readonly appointmentTime: Prisma.FieldRef<"Appointment", 'String'>
+  readonly appointmentTime: Prisma.FieldRef<"Appointment", 'DateTime'>
   readonly consultingType: Prisma.FieldRef<"Appointment", 'ConsultingType'>
   readonly complaint: Prisma.FieldRef<"Appointment", 'String'>
   readonly visitType: Prisma.FieldRef<"Appointment", 'String'>
