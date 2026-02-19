@@ -13,7 +13,8 @@ export class AppointmentService {
     async createAppointment(userId: string, dto: CreateAppointmentDto) {
         try {
             const patient = await this.prisma.patient.findUnique({
-                where: { userId: userId },
+                where: { userId },
+                select: { id: true },
             });
 
             if (!patient) {
@@ -33,27 +34,29 @@ export class AppointmentService {
                 if (slot.startTime <= new Date()) {
                     throw new BadRequestException('Slot already started');
                 }
- 
-                if (!slot.isStream && slot.bookedCount >= slot.capacity) {
-                    throw new BadRequestException('Slot is full');
-                }
 
-                await tx.availabilitySlot.update({
-                    where: { id: slot.id },
+                // Atomic capacity check
+                const updated = await tx.availabilitySlot.updateMany({
+                    where: {
+                        id: slot.id,
+                        bookedCount: { lt: slot.capacity },
+                    },
                     data: {
                         bookedCount: { increment: 1 },
                     },
                 });
 
+                if (updated.count === 0) {
+                    throw new BadRequestException('Slot is full');
+                }
+
                 const appointment = await tx.appointment.create({
                     data: {
                         patientId: patient.id,
-                        doctorId: slot.doctorId, 
+                        doctorId: slot.doctorId,
                         slotId: slot.id,
-
                         appointmentDate: slot.startTime,
                         appointmentTime: slot.startTime,
-
                         consultingType: dto.consultingType,
                         complaint: dto.complaint,
                         visitType: dto.visitType,
@@ -74,6 +77,7 @@ export class AppointmentService {
             throw new InternalServerErrorException('Internal server error');
         }
     }
+
 
     async markAppointmentCompleted(userId: string, appointmentId: string) {
         try {
@@ -158,21 +162,18 @@ export class AppointmentService {
         }
     }
 
-    async rescheduleAppointment(
-        userId: string,
-        dto: RescheduleAppointmentDto,
-    ) {
+    async rescheduleAppointment(userId: string, dto: RescheduleAppointmentDto) {
         try {
             const patient = await this.prisma.patient.findUnique({
                 where: { userId },
+                select: { id: true },
             });
 
             if (!patient) {
-                throw new NotFoundException('Patient not found');
+                throw new NotFoundException("Patient not found");
             }
 
             await this.prisma.$transaction(async (tx) => {
-
                 const appt = await tx.appointment.findFirst({
                     where: {
                         id: dto.appointmentId,
@@ -181,12 +182,12 @@ export class AppointmentService {
                 });
 
                 if (!appt) {
-                    throw new NotFoundException('Appointment not found');
+                    throw new NotFoundException("Appointment not found");
                 }
 
                 if (appt.status !== AppointmentStatus.BOOKED) {
                     throw new BadRequestException(
-                        'Only BOOKED appointments can be rescheduled'
+                        "Only BOOKED appointments can be rescheduled"
                     );
                 }
 
@@ -195,13 +196,13 @@ export class AppointmentService {
                 });
 
                 if (!oldSlot) {
-                    throw new NotFoundException('Original slot not found');
+                    throw new NotFoundException("Original slot not found");
                 }
 
                 const cutoff = new Date(Date.now() + 24 * 60 * 60 * 1000);
                 if (oldSlot.startTime <= cutoff) {
                     throw new BadRequestException(
-                        'Reschedule allowed only if appointment is more than 24 hours away'
+                        "Reschedule allowed only if appointment is more than 24 hours away"
                     );
                 }
 
@@ -210,50 +211,41 @@ export class AppointmentService {
                 });
 
                 if (!newSlot) {
-                    throw new NotFoundException('New slot not found');
+                    throw new NotFoundException("New slot not found");
                 }
 
                 if (newSlot.startTime <= new Date()) {
-                    throw new BadRequestException('New slot already started');
+                    throw new BadRequestException("New slot already started");
                 }
 
                 if (newSlot.doctorId !== appt.doctorId) {
                     throw new BadRequestException(
-                        'Cannot reschedule to a different doctor'
+                        "Cannot reschedule to a different doctor"
                     );
                 }
 
-                if (!newSlot.isStream && newSlot.bookedCount >= newSlot.capacity) {
-                    throw new BadRequestException('New slot is full');
-                }
-
-                await tx.availabilitySlot.updateMany({
-                    where: {
-                        id: oldSlot.id,
-                        bookedCount: { gt: 0 },
-                    },
-                    data: {
-                        bookedCount: { decrement: 1 },
-                    },
-                });
-
-                const updated = await tx.availabilitySlot.updateMany({
+                // Step 1: Increment new slot safely
+                const increment = await tx.availabilitySlot.updateMany({
                     where: {
                         id: newSlot.id,
-                        OR: [
-                            { isStream: true },
-                            { bookedCount: { lt: newSlot.capacity } },
-                        ],
+                        bookedCount: { lt: newSlot.capacity },
                     },
                     data: {
                         bookedCount: { increment: 1 },
                     },
                 });
 
-                if (updated.count === 0) {
-                    throw new BadRequestException('New slot is full');
+                if (increment.count === 0) {
+                    throw new BadRequestException("New slot is full");
                 }
 
+                // Step 2: Decrement old slot
+                await tx.availabilitySlot.update({
+                    where: { id: oldSlot.id },
+                    data: { bookedCount: { decrement: 1 } },
+                });
+
+                // Step 3: Update appointment
                 await tx.appointment.update({
                     where: { id: dto.appointmentId },
                     data: {
@@ -263,15 +255,14 @@ export class AppointmentService {
                         appointmentTime: newSlot.startTime,
                     },
                 });
-
             });
 
-            return { message: 'Appointment rescheduled successfully' };
+            return { message: "Appointment rescheduled successfully" };
 
         } catch (err) {
             console.error(err);
             if (err instanceof HttpException) throw err;
-            throw new InternalServerErrorException('Internal server error');
+            throw new InternalServerErrorException("Internal server error");
         }
     }
 
@@ -356,7 +347,6 @@ export class AppointmentService {
                             startTime: true,
                             endTime: true,
                             sessionType: true,
-                            isStream: true,
                         },
                     },
                 },

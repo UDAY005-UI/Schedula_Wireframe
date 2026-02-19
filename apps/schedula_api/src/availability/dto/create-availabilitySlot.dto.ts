@@ -3,8 +3,6 @@ import {
   IsDate,
   IsEnum,
   IsInt,
-  IsOptional,
-  IsBoolean,
   Min,
 } from 'class-validator';
 import { SessionType } from 'src/generated/prisma/enums';
@@ -15,24 +13,14 @@ export class CreateAvailabilitySlotDto {
   @IsDate()
   startTime: Date;
 
-  @Type(() => Date)
-  @IsDate()
-  endTime: Date;
+  @IsInt()
+  @Min(1)
+  durationMin: number;
 
   @IsEnum(SessionType)
   sessionType: SessionType;
 
-  @IsOptional()
   @IsInt()
   @Min(1)
-  capacity?: number;
-
-  @IsOptional()
-  @IsBoolean()
-  isStream?: boolean;
-
-  @IsOptional()
-  @IsInt()
-  @Min(1)
-  streamBufferMin?: number;
+  capacity: number;
 }
