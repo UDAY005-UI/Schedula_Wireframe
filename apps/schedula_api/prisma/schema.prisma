@@ -59,15 +59,15 @@ model Doctor {
 }
 
 model AvailabilitySlot {
-  id        String   @id @default(uuid())
+  id String @id @default(uuid())
 
-  startTime   DateTime
-  endTime     DateTime
-  
-  durationMin Int     
+  startTime DateTime
+  endTime   DateTime
 
-  capacity    Int     
-  bookedCount Int     @default(0)
+  durationMin Int
+
+  capacity    Int
+  bookedCount Int @default(0)
 
   sessionType SessionType
 
@@ -79,7 +79,6 @@ model AvailabilitySlot {
 
   appointments Appointment[]
 }
-
 
 model Appointment {
   id              String            @id @default(uuid())
@@ -100,20 +99,23 @@ model Appointment {
 }
 
 model RecurringRule {
-  id        String   @id @default(uuid())
+  id String @id @default(uuid())
 
-  doctorId  String
-  doctor    Doctor   @relation(fields: [doctorId], references: [id])
+  doctorId String
+  doctor   Doctor @relation(fields: [doctorId], references: [id])
+
+  isStream Boolean @default(true)
 
   weekdayMask Int
-  startMin    Int
 
-  durationMin Int   
+  startMin Int
+  endMin   Int?
 
-  capacity Int
+  durationMin Int
+  capacity    Int
 
-  validFrom   DateTime
-  validUntil  DateTime?
+  validFrom  DateTime
+  validUntil DateTime?
 
   sessionType SessionType
 

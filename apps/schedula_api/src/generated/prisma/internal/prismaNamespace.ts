@@ -974,8 +974,10 @@ export type AppointmentScalarFieldEnum = (typeof AppointmentScalarFieldEnum)[key
 export const RecurringRuleScalarFieldEnum = {
   id: 'id',
   doctorId: 'doctorId',
+  isStream: 'isStream',
   weekdayMask: 'weekdayMask',
   startMin: 'startMin',
+  endMin: 'endMin',
   durationMin: 'durationMin',
   capacity: 'capacity',
   validFrom: 'validFrom',
