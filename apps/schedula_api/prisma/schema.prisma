@@ -12,7 +12,7 @@ model User {
   id       String    @id @default(uuid())
   name     String
   dob      DateTime?
-  mobileNo String?    @unique
+  mobileNo String?   @unique
   gender   String?
   email    String    @unique
   googleId String?   @unique
@@ -54,29 +54,44 @@ model Doctor {
   appointments  Appointment[]
   slots         AvailabilitySlot[]
   user          User               @relation(fields: [userId], references: [id])
+
+  recurringRules RecurringRule[]
 }
 
 model AvailabilitySlot {
-  id           String        @id @default(uuid())
-  date         DateTime
-  startTime    String
-  endTime      String
-  sessionType  SessionType
-  doctorId     String
+  id          String   @id @default(uuid())
+
+  startTime     DateTime
+  endTime       DateTime
+
+  capacity    Int      @default(1)
+  bookedCount Int      @default(0)
+
+  isStream    Boolean  @default(false)
+  streamBufferMin Int?
+
+  sessionType SessionType
+
+  doctorId    String
+  doctor      Doctor @relation(fields: [doctorId], references: [id])
+
+  ruleId      String?
+  rule        RecurringRule? @relation(fields: [ruleId], references: [id])
+
   appointments Appointment[]
-  doctor       Doctor        @relation(fields: [doctorId], references: [id])
 }
+
 
 model Appointment {
   id              String            @id @default(uuid())
   appointmentDate DateTime
-  appointmentTime String
+  appointmentTime DateTime
   consultingType  ConsultingType
   complaint       String
   visitType       String
   weight          Float?
   recordedAge     Int?
-  status          AppointmentStatus 
+  status          AppointmentStatus
   patientId       String
   doctorId        String
   slotId          String
@@ -84,6 +99,28 @@ model Appointment {
   patient         Patient           @relation(fields: [patientId], references: [id])
   slot            AvailabilitySlot  @relation(fields: [slotId], references: [id])
 }
+
+model RecurringRule {
+  id           String   @id @default(uuid())
+  doctorId     String
+  doctor       Doctor   @relation(fields: [doctorId], references: [id])
+
+  weekdayMask  Int      
+  startMin     Int      
+  endMin       Int
+
+  slotSizeMin  Int
+  capacity     Int      @default(1)
+  isStream     Boolean  @default(false)
+
+  validFrom    DateTime
+  validUntil   DateTime?
+
+  sessionType  SessionType
+
+  slots AvailabilitySlot[]
+}
+
 
 enum UserRole {
   PATIENT
