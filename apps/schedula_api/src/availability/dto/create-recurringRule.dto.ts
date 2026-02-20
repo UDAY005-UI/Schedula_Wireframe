@@ -8,6 +8,7 @@ import {
   IsDate,
   IsOptional,
   IsEnum,
+  IsBoolean,
 } from 'class-validator';
 import { SessionType } from 'src/generated/prisma/enums';
 
@@ -20,9 +21,17 @@ export class CreateRecurringRuleDto {
   @Max(6, { each: true })
   weekdays: number[];
 
+  @IsBoolean()
+  isStream: boolean;
+
   @Type(() => Date)
   @IsDate()
   startTime: Date;
+
+  // Required if isStream = false
+  @Type(() => Date)
+  @IsOptional()
+  endTime?: Date;
 
   @IsInt()
   @Min(1)
