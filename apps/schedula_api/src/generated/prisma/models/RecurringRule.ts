@@ -29,16 +29,14 @@ export type AggregateRecurringRule = {
 export type RecurringRuleAvgAggregateOutputType = {
   weekdayMask: number | null
   startMin: number | null
-  endMin: number | null
-  slotSizeMin: number | null
+  durationMin: number | null
   capacity: number | null
 }
 
 export type RecurringRuleSumAggregateOutputType = {
   weekdayMask: number | null
   startMin: number | null
-  endMin: number | null
-  slotSizeMin: number | null
+  durationMin: number | null
   capacity: number | null
 }
 
@@ -47,10 +45,8 @@ export type RecurringRuleMinAggregateOutputType = {
   doctorId: string | null
   weekdayMask: number | null
   startMin: number | null
-  endMin: number | null
-  slotSizeMin: number | null
+  durationMin: number | null
   capacity: number | null
-  isStream: boolean | null
   validFrom: Date | null
   validUntil: Date | null
   sessionType: $Enums.SessionType | null
@@ -61,10 +57,8 @@ export type RecurringRuleMaxAggregateOutputType = {
   doctorId: string | null
   weekdayMask: number | null
   startMin: number | null
-  endMin: number | null
-  slotSizeMin: number | null
+  durationMin: number | null
   capacity: number | null
-  isStream: boolean | null
   validFrom: Date | null
   validUntil: Date | null
   sessionType: $Enums.SessionType | null
@@ -75,10 +69,8 @@ export type RecurringRuleCountAggregateOutputType = {
   doctorId: number
   weekdayMask: number
   startMin: number
-  endMin: number
-  slotSizeMin: number
+  durationMin: number
   capacity: number
-  isStream: number
   validFrom: number
   validUntil: number
   sessionType: number
@@ -89,16 +81,14 @@ export type RecurringRuleCountAggregateOutputType = {
 export type RecurringRuleAvgAggregateInputType = {
   weekdayMask?: true
   startMin?: true
-  endMin?: true
-  slotSizeMin?: true
+  durationMin?: true
   capacity?: true
 }
 
 export type RecurringRuleSumAggregateInputType = {
   weekdayMask?: true
   startMin?: true
-  endMin?: true
-  slotSizeMin?: true
+  durationMin?: true
   capacity?: true
 }
 
@@ -107,10 +97,8 @@ export type RecurringRuleMinAggregateInputType = {
   doctorId?: true
   weekdayMask?: true
   startMin?: true
-  endMin?: true
-  slotSizeMin?: true
+  durationMin?: true
   capacity?: true
-  isStream?: true
   validFrom?: true
   validUntil?: true
   sessionType?: true
@@ -121,10 +109,8 @@ export type RecurringRuleMaxAggregateInputType = {
   doctorId?: true
   weekdayMask?: true
   startMin?: true
-  endMin?: true
-  slotSizeMin?: true
+  durationMin?: true
   capacity?: true
-  isStream?: true
   validFrom?: true
   validUntil?: true
   sessionType?: true
@@ -135,10 +121,8 @@ export type RecurringRuleCountAggregateInputType = {
   doctorId?: true
   weekdayMask?: true
   startMin?: true
-  endMin?: true
-  slotSizeMin?: true
+  durationMin?: true
   capacity?: true
-  isStream?: true
   validFrom?: true
   validUntil?: true
   sessionType?: true
@@ -236,10 +220,8 @@ export type RecurringRuleGroupByOutputType = {
   doctorId: string
   weekdayMask: number
   startMin: number
-  endMin: number
-  slotSizeMin: number
+  durationMin: number
   capacity: number
-  isStream: boolean
   validFrom: Date
   validUntil: Date | null
   sessionType: $Enums.SessionType
@@ -273,10 +255,8 @@ export type RecurringRuleWhereInput = {
   doctorId?: Prisma.StringFilter<"RecurringRule"> | string
   weekdayMask?: Prisma.IntFilter<"RecurringRule"> | number
   startMin?: Prisma.IntFilter<"RecurringRule"> | number
-  endMin?: Prisma.IntFilter<"RecurringRule"> | number
-  slotSizeMin?: Prisma.IntFilter<"RecurringRule"> | number
+  durationMin?: Prisma.IntFilter<"RecurringRule"> | number
   capacity?: Prisma.IntFilter<"RecurringRule"> | number
-  isStream?: Prisma.BoolFilter<"RecurringRule"> | boolean
   validFrom?: Prisma.DateTimeFilter<"RecurringRule"> | Date | string
   validUntil?: Prisma.DateTimeNullableFilter<"RecurringRule"> | Date | string | null
   sessionType?: Prisma.EnumSessionTypeFilter<"RecurringRule"> | $Enums.SessionType
@@ -289,10 +269,8 @@ export type RecurringRuleOrderByWithRelationInput = {
   doctorId?: Prisma.SortOrder
   weekdayMask?: Prisma.SortOrder
   startMin?: Prisma.SortOrder
-  endMin?: Prisma.SortOrder
-  slotSizeMin?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
-  isStream?: Prisma.SortOrder
   validFrom?: Prisma.SortOrder
   validUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   sessionType?: Prisma.SortOrder
@@ -308,10 +286,8 @@ export type RecurringRuleWhereUniqueInput = Prisma.AtLeast<{
   doctorId?: Prisma.StringFilter<"RecurringRule"> | string
   weekdayMask?: Prisma.IntFilter<"RecurringRule"> | number
   startMin?: Prisma.IntFilter<"RecurringRule"> | number
-  endMin?: Prisma.IntFilter<"RecurringRule"> | number
-  slotSizeMin?: Prisma.IntFilter<"RecurringRule"> | number
+  durationMin?: Prisma.IntFilter<"RecurringRule"> | number
   capacity?: Prisma.IntFilter<"RecurringRule"> | number
-  isStream?: Prisma.BoolFilter<"RecurringRule"> | boolean
   validFrom?: Prisma.DateTimeFilter<"RecurringRule"> | Date | string
   validUntil?: Prisma.DateTimeNullableFilter<"RecurringRule"> | Date | string | null
   sessionType?: Prisma.EnumSessionTypeFilter<"RecurringRule"> | $Enums.SessionType
@@ -324,10 +300,8 @@ export type RecurringRuleOrderByWithAggregationInput = {
   doctorId?: Prisma.SortOrder
   weekdayMask?: Prisma.SortOrder
   startMin?: Prisma.SortOrder
-  endMin?: Prisma.SortOrder
-  slotSizeMin?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
-  isStream?: Prisma.SortOrder
   validFrom?: Prisma.SortOrder
   validUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   sessionType?: Prisma.SortOrder
@@ -346,10 +320,8 @@ export type RecurringRuleScalarWhereWithAggregatesInput = {
   doctorId?: Prisma.StringWithAggregatesFilter<"RecurringRule"> | string
   weekdayMask?: Prisma.IntWithAggregatesFilter<"RecurringRule"> | number
   startMin?: Prisma.IntWithAggregatesFilter<"RecurringRule"> | number
-  endMin?: Prisma.IntWithAggregatesFilter<"RecurringRule"> | number
-  slotSizeMin?: Prisma.IntWithAggregatesFilter<"RecurringRule"> | number
+  durationMin?: Prisma.IntWithAggregatesFilter<"RecurringRule"> | number
   capacity?: Prisma.IntWithAggregatesFilter<"RecurringRule"> | number
-  isStream?: Prisma.BoolWithAggregatesFilter<"RecurringRule"> | boolean
   validFrom?: Prisma.DateTimeWithAggregatesFilter<"RecurringRule"> | Date | string
   validUntil?: Prisma.DateTimeNullableWithAggregatesFilter<"RecurringRule"> | Date | string | null
   sessionType?: Prisma.EnumSessionTypeWithAggregatesFilter<"RecurringRule"> | $Enums.SessionType
@@ -359,10 +331,8 @@ export type RecurringRuleCreateInput = {
   id?: string
   weekdayMask: number
   startMin: number
-  endMin: number
-  slotSizeMin: number
-  capacity?: number
-  isStream?: boolean
+  durationMin: number
+  capacity: number
   validFrom: Date | string
   validUntil?: Date | string | null
   sessionType: $Enums.SessionType
@@ -375,10 +345,8 @@ export type RecurringRuleUncheckedCreateInput = {
   doctorId: string
   weekdayMask: number
   startMin: number
-  endMin: number
-  slotSizeMin: number
-  capacity?: number
-  isStream?: boolean
+  durationMin: number
+  capacity: number
   validFrom: Date | string
   validUntil?: Date | string | null
   sessionType: $Enums.SessionType
@@ -389,10 +357,8 @@ export type RecurringRuleUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   weekdayMask?: Prisma.IntFieldUpdateOperationsInput | number
   startMin?: Prisma.IntFieldUpdateOperationsInput | number
-  endMin?: Prisma.IntFieldUpdateOperationsInput | number
-  slotSizeMin?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
   validFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
@@ -405,10 +371,8 @@ export type RecurringRuleUncheckedUpdateInput = {
   doctorId?: Prisma.StringFieldUpdateOperationsInput | string
   weekdayMask?: Prisma.IntFieldUpdateOperationsInput | number
   startMin?: Prisma.IntFieldUpdateOperationsInput | number
-  endMin?: Prisma.IntFieldUpdateOperationsInput | number
-  slotSizeMin?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
   validFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
@@ -420,10 +384,8 @@ export type RecurringRuleCreateManyInput = {
   doctorId: string
   weekdayMask: number
   startMin: number
-  endMin: number
-  slotSizeMin: number
-  capacity?: number
-  isStream?: boolean
+  durationMin: number
+  capacity: number
   validFrom: Date | string
   validUntil?: Date | string | null
   sessionType: $Enums.SessionType
@@ -433,10 +395,8 @@ export type RecurringRuleUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   weekdayMask?: Prisma.IntFieldUpdateOperationsInput | number
   startMin?: Prisma.IntFieldUpdateOperationsInput | number
-  endMin?: Prisma.IntFieldUpdateOperationsInput | number
-  slotSizeMin?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
   validFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
@@ -447,10 +407,8 @@ export type RecurringRuleUncheckedUpdateManyInput = {
   doctorId?: Prisma.StringFieldUpdateOperationsInput | string
   weekdayMask?: Prisma.IntFieldUpdateOperationsInput | number
   startMin?: Prisma.IntFieldUpdateOperationsInput | number
-  endMin?: Prisma.IntFieldUpdateOperationsInput | number
-  slotSizeMin?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
   validFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
@@ -476,10 +434,8 @@ export type RecurringRuleCountOrderByAggregateInput = {
   doctorId?: Prisma.SortOrder
   weekdayMask?: Prisma.SortOrder
   startMin?: Prisma.SortOrder
-  endMin?: Prisma.SortOrder
-  slotSizeMin?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
-  isStream?: Prisma.SortOrder
   validFrom?: Prisma.SortOrder
   validUntil?: Prisma.SortOrder
   sessionType?: Prisma.SortOrder
@@ -488,8 +444,7 @@ export type RecurringRuleCountOrderByAggregateInput = {
 export type RecurringRuleAvgOrderByAggregateInput = {
   weekdayMask?: Prisma.SortOrder
   startMin?: Prisma.SortOrder
-  endMin?: Prisma.SortOrder
-  slotSizeMin?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
 }
 
@@ -498,10 +453,8 @@ export type RecurringRuleMaxOrderByAggregateInput = {
   doctorId?: Prisma.SortOrder
   weekdayMask?: Prisma.SortOrder
   startMin?: Prisma.SortOrder
-  endMin?: Prisma.SortOrder
-  slotSizeMin?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
-  isStream?: Prisma.SortOrder
   validFrom?: Prisma.SortOrder
   validUntil?: Prisma.SortOrder
   sessionType?: Prisma.SortOrder
@@ -512,10 +465,8 @@ export type RecurringRuleMinOrderByAggregateInput = {
   doctorId?: Prisma.SortOrder
   weekdayMask?: Prisma.SortOrder
   startMin?: Prisma.SortOrder
-  endMin?: Prisma.SortOrder
-  slotSizeMin?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
-  isStream?: Prisma.SortOrder
   validFrom?: Prisma.SortOrder
   validUntil?: Prisma.SortOrder
   sessionType?: Prisma.SortOrder
@@ -524,8 +475,7 @@ export type RecurringRuleMinOrderByAggregateInput = {
 export type RecurringRuleSumOrderByAggregateInput = {
   weekdayMask?: Prisma.SortOrder
   startMin?: Prisma.SortOrder
-  endMin?: Prisma.SortOrder
-  slotSizeMin?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
 }
 
@@ -591,10 +541,8 @@ export type RecurringRuleCreateWithoutDoctorInput = {
   id?: string
   weekdayMask: number
   startMin: number
-  endMin: number
-  slotSizeMin: number
-  capacity?: number
-  isStream?: boolean
+  durationMin: number
+  capacity: number
   validFrom: Date | string
   validUntil?: Date | string | null
   sessionType: $Enums.SessionType
@@ -605,10 +553,8 @@ export type RecurringRuleUncheckedCreateWithoutDoctorInput = {
   id?: string
   weekdayMask: number
   startMin: number
-  endMin: number
-  slotSizeMin: number
-  capacity?: number
-  isStream?: boolean
+  durationMin: number
+  capacity: number
   validFrom: Date | string
   validUntil?: Date | string | null
   sessionType: $Enums.SessionType
@@ -649,10 +595,8 @@ export type RecurringRuleScalarWhereInput = {
   doctorId?: Prisma.StringFilter<"RecurringRule"> | string
   weekdayMask?: Prisma.IntFilter<"RecurringRule"> | number
   startMin?: Prisma.IntFilter<"RecurringRule"> | number
-  endMin?: Prisma.IntFilter<"RecurringRule"> | number
-  slotSizeMin?: Prisma.IntFilter<"RecurringRule"> | number
+  durationMin?: Prisma.IntFilter<"RecurringRule"> | number
   capacity?: Prisma.IntFilter<"RecurringRule"> | number
-  isStream?: Prisma.BoolFilter<"RecurringRule"> | boolean
   validFrom?: Prisma.DateTimeFilter<"RecurringRule"> | Date | string
   validUntil?: Prisma.DateTimeNullableFilter<"RecurringRule"> | Date | string | null
   sessionType?: Prisma.EnumSessionTypeFilter<"RecurringRule"> | $Enums.SessionType
@@ -662,10 +606,8 @@ export type RecurringRuleCreateWithoutSlotsInput = {
   id?: string
   weekdayMask: number
   startMin: number
-  endMin: number
-  slotSizeMin: number
-  capacity?: number
-  isStream?: boolean
+  durationMin: number
+  capacity: number
   validFrom: Date | string
   validUntil?: Date | string | null
   sessionType: $Enums.SessionType
@@ -677,10 +619,8 @@ export type RecurringRuleUncheckedCreateWithoutSlotsInput = {
   doctorId: string
   weekdayMask: number
   startMin: number
-  endMin: number
-  slotSizeMin: number
-  capacity?: number
-  isStream?: boolean
+  durationMin: number
+  capacity: number
   validFrom: Date | string
   validUntil?: Date | string | null
   sessionType: $Enums.SessionType
@@ -706,10 +646,8 @@ export type RecurringRuleUpdateWithoutSlotsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   weekdayMask?: Prisma.IntFieldUpdateOperationsInput | number
   startMin?: Prisma.IntFieldUpdateOperationsInput | number
-  endMin?: Prisma.IntFieldUpdateOperationsInput | number
-  slotSizeMin?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
   validFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
@@ -721,10 +659,8 @@ export type RecurringRuleUncheckedUpdateWithoutSlotsInput = {
   doctorId?: Prisma.StringFieldUpdateOperationsInput | string
   weekdayMask?: Prisma.IntFieldUpdateOperationsInput | number
   startMin?: Prisma.IntFieldUpdateOperationsInput | number
-  endMin?: Prisma.IntFieldUpdateOperationsInput | number
-  slotSizeMin?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
   validFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
@@ -734,10 +670,8 @@ export type RecurringRuleCreateManyDoctorInput = {
   id?: string
   weekdayMask: number
   startMin: number
-  endMin: number
-  slotSizeMin: number
-  capacity?: number
-  isStream?: boolean
+  durationMin: number
+  capacity: number
   validFrom: Date | string
   validUntil?: Date | string | null
   sessionType: $Enums.SessionType
@@ -747,10 +681,8 @@ export type RecurringRuleUpdateWithoutDoctorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   weekdayMask?: Prisma.IntFieldUpdateOperationsInput | number
   startMin?: Prisma.IntFieldUpdateOperationsInput | number
-  endMin?: Prisma.IntFieldUpdateOperationsInput | number
-  slotSizeMin?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
   validFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
@@ -761,10 +693,8 @@ export type RecurringRuleUncheckedUpdateWithoutDoctorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   weekdayMask?: Prisma.IntFieldUpdateOperationsInput | number
   startMin?: Prisma.IntFieldUpdateOperationsInput | number
-  endMin?: Prisma.IntFieldUpdateOperationsInput | number
-  slotSizeMin?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
   validFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
@@ -775,10 +705,8 @@ export type RecurringRuleUncheckedUpdateManyWithoutDoctorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   weekdayMask?: Prisma.IntFieldUpdateOperationsInput | number
   startMin?: Prisma.IntFieldUpdateOperationsInput | number
-  endMin?: Prisma.IntFieldUpdateOperationsInput | number
-  slotSizeMin?: Prisma.IntFieldUpdateOperationsInput | number
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
   validFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   validUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
@@ -820,10 +748,8 @@ export type RecurringRuleSelect<ExtArgs extends runtime.Types.Extensions.Interna
   doctorId?: boolean
   weekdayMask?: boolean
   startMin?: boolean
-  endMin?: boolean
-  slotSizeMin?: boolean
+  durationMin?: boolean
   capacity?: boolean
-  isStream?: boolean
   validFrom?: boolean
   validUntil?: boolean
   sessionType?: boolean
@@ -837,10 +763,8 @@ export type RecurringRuleSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   doctorId?: boolean
   weekdayMask?: boolean
   startMin?: boolean
-  endMin?: boolean
-  slotSizeMin?: boolean
+  durationMin?: boolean
   capacity?: boolean
-  isStream?: boolean
   validFrom?: boolean
   validUntil?: boolean
   sessionType?: boolean
@@ -852,10 +776,8 @@ export type RecurringRuleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   doctorId?: boolean
   weekdayMask?: boolean
   startMin?: boolean
-  endMin?: boolean
-  slotSizeMin?: boolean
+  durationMin?: boolean
   capacity?: boolean
-  isStream?: boolean
   validFrom?: boolean
   validUntil?: boolean
   sessionType?: boolean
@@ -867,16 +789,14 @@ export type RecurringRuleSelectScalar = {
   doctorId?: boolean
   weekdayMask?: boolean
   startMin?: boolean
-  endMin?: boolean
-  slotSizeMin?: boolean
+  durationMin?: boolean
   capacity?: boolean
-  isStream?: boolean
   validFrom?: boolean
   validUntil?: boolean
   sessionType?: boolean
 }
 
-export type RecurringRuleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "doctorId" | "weekdayMask" | "startMin" | "endMin" | "slotSizeMin" | "capacity" | "isStream" | "validFrom" | "validUntil" | "sessionType", ExtArgs["result"]["recurringRule"]>
+export type RecurringRuleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "doctorId" | "weekdayMask" | "startMin" | "durationMin" | "capacity" | "validFrom" | "validUntil" | "sessionType", ExtArgs["result"]["recurringRule"]>
 export type RecurringRuleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   doctor?: boolean | Prisma.DoctorDefaultArgs<ExtArgs>
   slots?: boolean | Prisma.RecurringRule$slotsArgs<ExtArgs>
@@ -900,10 +820,8 @@ export type $RecurringRulePayload<ExtArgs extends runtime.Types.Extensions.Inter
     doctorId: string
     weekdayMask: number
     startMin: number
-    endMin: number
-    slotSizeMin: number
+    durationMin: number
     capacity: number
-    isStream: boolean
     validFrom: Date
     validUntil: Date | null
     sessionType: $Enums.SessionType
@@ -1336,10 +1254,8 @@ export interface RecurringRuleFieldRefs {
   readonly doctorId: Prisma.FieldRef<"RecurringRule", 'String'>
   readonly weekdayMask: Prisma.FieldRef<"RecurringRule", 'Int'>
   readonly startMin: Prisma.FieldRef<"RecurringRule", 'Int'>
-  readonly endMin: Prisma.FieldRef<"RecurringRule", 'Int'>
-  readonly slotSizeMin: Prisma.FieldRef<"RecurringRule", 'Int'>
+  readonly durationMin: Prisma.FieldRef<"RecurringRule", 'Int'>
   readonly capacity: Prisma.FieldRef<"RecurringRule", 'Int'>
-  readonly isStream: Prisma.FieldRef<"RecurringRule", 'Boolean'>
   readonly validFrom: Prisma.FieldRef<"RecurringRule", 'DateTime'>
   readonly validUntil: Prisma.FieldRef<"RecurringRule", 'DateTime'>
   readonly sessionType: Prisma.FieldRef<"RecurringRule", 'SessionType'>

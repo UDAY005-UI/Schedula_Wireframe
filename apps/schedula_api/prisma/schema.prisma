@@ -59,24 +59,23 @@ model Doctor {
 }
 
 model AvailabilitySlot {
-  id          String   @id @default(uuid())
+  id        String   @id @default(uuid())
 
-  startTime     DateTime
-  endTime       DateTime
+  startTime   DateTime
+  endTime     DateTime
+  
+  durationMin Int     
 
-  capacity    Int      @default(1)
-  bookedCount Int      @default(0)
-
-  isStream    Boolean  @default(false)
-  streamBufferMin Int?
+  capacity    Int     
+  bookedCount Int     @default(0)
 
   sessionType SessionType
 
-  doctorId    String
-  doctor      Doctor @relation(fields: [doctorId], references: [id])
+  doctorId String
+  doctor   Doctor @relation(fields: [doctorId], references: [id])
 
-  ruleId      String?
-  rule        RecurringRule? @relation(fields: [ruleId], references: [id])
+  ruleId String?
+  rule   RecurringRule? @relation(fields: [ruleId], references: [id])
 
   appointments Appointment[]
 }
@@ -101,26 +100,25 @@ model Appointment {
 }
 
 model RecurringRule {
-  id           String   @id @default(uuid())
-  doctorId     String
-  doctor       Doctor   @relation(fields: [doctorId], references: [id])
+  id        String   @id @default(uuid())
 
-  weekdayMask  Int      
-  startMin     Int      
-  endMin       Int
+  doctorId  String
+  doctor    Doctor   @relation(fields: [doctorId], references: [id])
 
-  slotSizeMin  Int
-  capacity     Int      @default(1)
-  isStream     Boolean  @default(false)
+  weekdayMask Int
+  startMin    Int
 
-  validFrom    DateTime
-  validUntil   DateTime?
+  durationMin Int   
 
-  sessionType  SessionType
+  capacity Int
+
+  validFrom   DateTime
+  validUntil  DateTime?
+
+  sessionType SessionType
 
   slots AvailabilitySlot[]
 }
-
 
 enum UserRole {
   PATIENT

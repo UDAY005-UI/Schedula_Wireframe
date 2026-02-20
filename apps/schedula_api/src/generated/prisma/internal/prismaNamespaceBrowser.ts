@@ -125,10 +125,9 @@ export const AvailabilitySlotScalarFieldEnum = {
   id: 'id',
   startTime: 'startTime',
   endTime: 'endTime',
+  durationMin: 'durationMin',
   capacity: 'capacity',
   bookedCount: 'bookedCount',
-  isStream: 'isStream',
-  streamBufferMin: 'streamBufferMin',
   sessionType: 'sessionType',
   doctorId: 'doctorId',
   ruleId: 'ruleId'
@@ -160,10 +159,8 @@ export const RecurringRuleScalarFieldEnum = {
   doctorId: 'doctorId',
   weekdayMask: 'weekdayMask',
   startMin: 'startMin',
-  endMin: 'endMin',
-  slotSizeMin: 'slotSizeMin',
+  durationMin: 'durationMin',
   capacity: 'capacity',
-  isStream: 'isStream',
   validFrom: 'validFrom',
   validUntil: 'validUntil',
   sessionType: 'sessionType'

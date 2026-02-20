@@ -35,14 +35,16 @@ export class AvailabilityService {
                 throw new NotFoundException('Doctor not found');
             }
 
-            if (dto.endTime <= dto.startTime) {
-                throw new BadRequestException('endTime must be after startTime');
-            }
+            // Compute endTime from duration
+            const endTime = new Date(
+                dto.startTime.getTime() + dto.durationMin * 60 * 1000,
+            );
 
+            // Check overlap
             const overlap = await this.prisma.availabilitySlot.findFirst({
                 where: {
                     doctorId: doctor.id,
-                    startTime: { lt: dto.endTime },
+                    startTime: { lt: endTime },
                     endTime: { gt: dto.startTime },
                 },
             });
@@ -54,13 +56,11 @@ export class AvailabilityService {
             const availabilitySlot = await this.prisma.availabilitySlot.create({
                 data: {
                     startTime: dto.startTime,
-                    endTime: dto.endTime,
+                    endTime,
+                    durationMin: dto.durationMin,
                     sessionType: dto.sessionType,
-
-                    capacity: dto.capacity ?? 1,
-                    isStream: dto.isStream ?? false,
-                    streamBufferMin: dto.streamBufferMin ?? null,
-
+                    capacity: dto.capacity,
+                    bookedCount: 0,
                     doctorId: doctor.id,
                 },
             });
@@ -75,44 +75,54 @@ export class AvailabilityService {
     }
 
     async getAvailableSlots(userId: string, dto: AvailabilityDto) {
-        try {
-            const user = await this.prisma.user.findUnique({
-                where: { id: userId },
-            });
+  try {
+    // Validate user exists
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      select: { id: true },
+    });
 
-            if (!user) {
-                throw new NotFoundException('User not found');
-            }
-
-            const now = new Date();
-
-            const slots = await this.prisma.availabilitySlot.findMany({
-                where: {
-                    doctorId: dto.doctorId,
-                    endTime: { gt: now },
-                },
-                orderBy: {
-                    startTime: 'asc',
-                },
-            });
-
-            const available = slots.filter(
-                s => s.isStream || s.bookedCount < s.capacity
-            );
-
-            return available;
-
-        } catch (err) {
-            console.error(err);
-            if (err instanceof HttpException) throw err;
-            throw new InternalServerErrorException('Internal server error');
-        }
+    if (!user) {
+      throw new NotFoundException('User not found');
     }
+
+    const now = new Date();
+
+    // Fetch only relevant future slots
+    const slots = await this.prisma.availabilitySlot.findMany({
+      where: {
+        doctorId: dto.doctorId,
+        endTime: { gt: now },
+      },
+      orderBy: {
+        startTime: 'asc',
+      },
+      select: {
+        id: true,
+        startTime: true,
+        endTime: true,
+        durationMin: true,
+        capacity: true,
+        bookedCount: true,
+        sessionType: true,
+      },
+    });
+
+    // Filter slots that still have capacity
+    return slots.filter(slot => slot.bookedCount < slot.capacity);
+
+  } catch (err) {
+    console.error(err);
+    if (err instanceof HttpException) throw err;
+    throw new InternalServerErrorException('Internal server error');
+  }
+}
 
     async createRecurringRule(userId: string, dto: CreateRecurringRuleDto) {
   try {
     const doctor = await this.prisma.doctor.findUnique({
       where: { userId },
+      select: { id: true },
     });
 
     if (!doctor) {
@@ -120,15 +130,6 @@ export class AvailabilityService {
     }
 
     const startMin = this.timeToMinFromDate(dto.startTime);
-    const endMin = this.timeToMinFromDate(dto.endTime);
-
-    if (endMin <= startMin) {
-      throw new BadRequestException('Invalid time range');
-    }
-
-    if (dto.slotSizeMin > (endMin - startMin)) {
-      throw new BadRequestException('slotSize too large');
-    }
 
     const mask = this.weekdayMask(dto.weekdays);
 
@@ -137,50 +138,58 @@ export class AvailabilityService {
         doctorId: doctor.id,
         weekdayMask: mask,
         startMin,
-        endMin,
-        slotSizeMin: dto.slotSizeMin,
-        capacity: dto.capacity ?? 1,
-        isStream: dto.isStream ?? false,
+        durationMin: dto.durationMin,
+        capacity: dto.capacity,
         validFrom: dto.validFrom,
         validUntil: dto.validUntil ?? null,
         sessionType: dto.sessionType,
       },
     });
 
-    const generateUntil = dto.validUntil ??
+    const generateUntil =
+      dto.validUntil ??
       new Date(dto.validFrom.getTime() + 30 * 86400000);
 
     const slots = [];
 
-    for (let d = new Date(dto.validFrom); d <= generateUntil; d.setDate(d.getDate() + 1)) {
+    for (
+      let d = new Date(dto.validFrom);
+      d <= generateUntil;
+      d.setDate(d.getDate() + 1)
+    ) {
       const weekday = d.getDay();
       if ((mask & (1 << weekday)) === 0) continue;
 
-      for (let t = startMin; t + dto.slotSizeMin <= endMin; t += dto.slotSizeMin) {
-        const start = new Date(d);
-        start.setHours(0, 0, 0, 0);
-        start.setMinutes(t);
+      const start = new Date(d);
+      start.setHours(0, 0, 0, 0);
+      start.setMinutes(startMin);
 
-        const end = new Date(start.getTime() + dto.slotSizeMin * 60000);
+      const end = new Date(
+        start.getTime() + dto.durationMin * 60000,
+      );
 
-        slots.push({
-          startTime: start,
-          endTime: end,
-          capacity: rule.capacity,
-          bookedCount: 0,
-          isStream: rule.isStream,
-          sessionType: rule.sessionType,
-          doctorId: doctor.id,
-          ruleId: rule.id,
-        });
-      }
+      slots.push({
+        startTime: start,
+        endTime: end,
+        durationMin: dto.durationMin,
+        capacity: dto.capacity,
+        bookedCount: 0,
+        sessionType: dto.sessionType,
+        doctorId: doctor.id,
+        ruleId: rule.id,
+      });
     }
 
     if (slots.length) {
-      await this.prisma.availabilitySlot.createMany({ data: slots });
+      await this.prisma.availabilitySlot.createMany({
+        data: slots,
+      });
     }
 
-    return { ruleId: rule.id, generatedSlots: slots.length };
+    return {
+      ruleId: rule.id,
+      generatedSlots: slots.length,
+    };
 
   } catch (err) {
     if (err instanceof HttpException) throw err;

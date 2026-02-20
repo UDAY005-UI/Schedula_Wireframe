@@ -27,25 +27,24 @@ export type AggregateAvailabilitySlot = {
 }
 
 export type AvailabilitySlotAvgAggregateOutputType = {
+  durationMin: number | null
   capacity: number | null
   bookedCount: number | null
-  streamBufferMin: number | null
 }
 
 export type AvailabilitySlotSumAggregateOutputType = {
+  durationMin: number | null
   capacity: number | null
   bookedCount: number | null
-  streamBufferMin: number | null
 }
 
 export type AvailabilitySlotMinAggregateOutputType = {
   id: string | null
   startTime: Date | null
   endTime: Date | null
+  durationMin: number | null
   capacity: number | null
   bookedCount: number | null
-  isStream: boolean | null
-  streamBufferMin: number | null
   sessionType: $Enums.SessionType | null
   doctorId: string | null
   ruleId: string | null
@@ -55,10 +54,9 @@ export type AvailabilitySlotMaxAggregateOutputType = {
   id: string | null
   startTime: Date | null
   endTime: Date | null
+  durationMin: number | null
   capacity: number | null
   bookedCount: number | null
-  isStream: boolean | null
-  streamBufferMin: number | null
   sessionType: $Enums.SessionType | null
   doctorId: string | null
   ruleId: string | null
@@ -68,10 +66,9 @@ export type AvailabilitySlotCountAggregateOutputType = {
   id: number
   startTime: number
   endTime: number
+  durationMin: number
   capacity: number
   bookedCount: number
-  isStream: number
-  streamBufferMin: number
   sessionType: number
   doctorId: number
   ruleId: number
@@ -80,25 +77,24 @@ export type AvailabilitySlotCountAggregateOutputType = {
 
 
 export type AvailabilitySlotAvgAggregateInputType = {
+  durationMin?: true
   capacity?: true
   bookedCount?: true
-  streamBufferMin?: true
 }
 
 export type AvailabilitySlotSumAggregateInputType = {
+  durationMin?: true
   capacity?: true
   bookedCount?: true
-  streamBufferMin?: true
 }
 
 export type AvailabilitySlotMinAggregateInputType = {
   id?: true
   startTime?: true
   endTime?: true
+  durationMin?: true
   capacity?: true
   bookedCount?: true
-  isStream?: true
-  streamBufferMin?: true
   sessionType?: true
   doctorId?: true
   ruleId?: true
@@ -108,10 +104,9 @@ export type AvailabilitySlotMaxAggregateInputType = {
   id?: true
   startTime?: true
   endTime?: true
+  durationMin?: true
   capacity?: true
   bookedCount?: true
-  isStream?: true
-  streamBufferMin?: true
   sessionType?: true
   doctorId?: true
   ruleId?: true
@@ -121,10 +116,9 @@ export type AvailabilitySlotCountAggregateInputType = {
   id?: true
   startTime?: true
   endTime?: true
+  durationMin?: true
   capacity?: true
   bookedCount?: true
-  isStream?: true
-  streamBufferMin?: true
   sessionType?: true
   doctorId?: true
   ruleId?: true
@@ -221,10 +215,9 @@ export type AvailabilitySlotGroupByOutputType = {
   id: string
   startTime: Date
   endTime: Date
+  durationMin: number
   capacity: number
   bookedCount: number
-  isStream: boolean
-  streamBufferMin: number | null
   sessionType: $Enums.SessionType
   doctorId: string
   ruleId: string | null
@@ -257,10 +250,9 @@ export type AvailabilitySlotWhereInput = {
   id?: Prisma.StringFilter<"AvailabilitySlot"> | string
   startTime?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
   endTime?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
+  durationMin?: Prisma.IntFilter<"AvailabilitySlot"> | number
   capacity?: Prisma.IntFilter<"AvailabilitySlot"> | number
   bookedCount?: Prisma.IntFilter<"AvailabilitySlot"> | number
-  isStream?: Prisma.BoolFilter<"AvailabilitySlot"> | boolean
-  streamBufferMin?: Prisma.IntNullableFilter<"AvailabilitySlot"> | number | null
   sessionType?: Prisma.EnumSessionTypeFilter<"AvailabilitySlot"> | $Enums.SessionType
   doctorId?: Prisma.StringFilter<"AvailabilitySlot"> | string
   ruleId?: Prisma.StringNullableFilter<"AvailabilitySlot"> | string | null
@@ -273,10 +265,9 @@ export type AvailabilitySlotOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
   bookedCount?: Prisma.SortOrder
-  isStream?: Prisma.SortOrder
-  streamBufferMin?: Prisma.SortOrderInput | Prisma.SortOrder
   sessionType?: Prisma.SortOrder
   doctorId?: Prisma.SortOrder
   ruleId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -292,10 +283,9 @@ export type AvailabilitySlotWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.AvailabilitySlotWhereInput | Prisma.AvailabilitySlotWhereInput[]
   startTime?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
   endTime?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
+  durationMin?: Prisma.IntFilter<"AvailabilitySlot"> | number
   capacity?: Prisma.IntFilter<"AvailabilitySlot"> | number
   bookedCount?: Prisma.IntFilter<"AvailabilitySlot"> | number
-  isStream?: Prisma.BoolFilter<"AvailabilitySlot"> | boolean
-  streamBufferMin?: Prisma.IntNullableFilter<"AvailabilitySlot"> | number | null
   sessionType?: Prisma.EnumSessionTypeFilter<"AvailabilitySlot"> | $Enums.SessionType
   doctorId?: Prisma.StringFilter<"AvailabilitySlot"> | string
   ruleId?: Prisma.StringNullableFilter<"AvailabilitySlot"> | string | null
@@ -308,10 +298,9 @@ export type AvailabilitySlotOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
   bookedCount?: Prisma.SortOrder
-  isStream?: Prisma.SortOrder
-  streamBufferMin?: Prisma.SortOrderInput | Prisma.SortOrder
   sessionType?: Prisma.SortOrder
   doctorId?: Prisma.SortOrder
   ruleId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -329,10 +318,9 @@ export type AvailabilitySlotScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"AvailabilitySlot"> | string
   startTime?: Prisma.DateTimeWithAggregatesFilter<"AvailabilitySlot"> | Date | string
   endTime?: Prisma.DateTimeWithAggregatesFilter<"AvailabilitySlot"> | Date | string
+  durationMin?: Prisma.IntWithAggregatesFilter<"AvailabilitySlot"> | number
   capacity?: Prisma.IntWithAggregatesFilter<"AvailabilitySlot"> | number
   bookedCount?: Prisma.IntWithAggregatesFilter<"AvailabilitySlot"> | number
-  isStream?: Prisma.BoolWithAggregatesFilter<"AvailabilitySlot"> | boolean
-  streamBufferMin?: Prisma.IntNullableWithAggregatesFilter<"AvailabilitySlot"> | number | null
   sessionType?: Prisma.EnumSessionTypeWithAggregatesFilter<"AvailabilitySlot"> | $Enums.SessionType
   doctorId?: Prisma.StringWithAggregatesFilter<"AvailabilitySlot"> | string
   ruleId?: Prisma.StringNullableWithAggregatesFilter<"AvailabilitySlot"> | string | null
@@ -342,10 +330,9 @@ export type AvailabilitySlotCreateInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
-  capacity?: number
+  durationMin: number
+  capacity: number
   bookedCount?: number
-  isStream?: boolean
-  streamBufferMin?: number | null
   sessionType: $Enums.SessionType
   doctor: Prisma.DoctorCreateNestedOneWithoutSlotsInput
   rule?: Prisma.RecurringRuleCreateNestedOneWithoutSlotsInput
@@ -356,10 +343,9 @@ export type AvailabilitySlotUncheckedCreateInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
-  capacity?: number
+  durationMin: number
+  capacity: number
   bookedCount?: number
-  isStream?: boolean
-  streamBufferMin?: number | null
   sessionType: $Enums.SessionType
   doctorId: string
   ruleId?: string | null
@@ -370,10 +356,9 @@ export type AvailabilitySlotUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
   bookedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  streamBufferMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   doctor?: Prisma.DoctorUpdateOneRequiredWithoutSlotsNestedInput
   rule?: Prisma.RecurringRuleUpdateOneWithoutSlotsNestedInput
@@ -384,10 +369,9 @@ export type AvailabilitySlotUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
   bookedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  streamBufferMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   doctorId?: Prisma.StringFieldUpdateOperationsInput | string
   ruleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -398,10 +382,9 @@ export type AvailabilitySlotCreateManyInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
-  capacity?: number
+  durationMin: number
+  capacity: number
   bookedCount?: number
-  isStream?: boolean
-  streamBufferMin?: number | null
   sessionType: $Enums.SessionType
   doctorId: string
   ruleId?: string | null
@@ -411,10 +394,9 @@ export type AvailabilitySlotUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
   bookedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  streamBufferMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
 }
 
@@ -422,10 +404,9 @@ export type AvailabilitySlotUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
   bookedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  streamBufferMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   doctorId?: Prisma.StringFieldUpdateOperationsInput | string
   ruleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -445,29 +426,27 @@ export type AvailabilitySlotCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
   bookedCount?: Prisma.SortOrder
-  isStream?: Prisma.SortOrder
-  streamBufferMin?: Prisma.SortOrder
   sessionType?: Prisma.SortOrder
   doctorId?: Prisma.SortOrder
   ruleId?: Prisma.SortOrder
 }
 
 export type AvailabilitySlotAvgOrderByAggregateInput = {
+  durationMin?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
   bookedCount?: Prisma.SortOrder
-  streamBufferMin?: Prisma.SortOrder
 }
 
 export type AvailabilitySlotMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
   bookedCount?: Prisma.SortOrder
-  isStream?: Prisma.SortOrder
-  streamBufferMin?: Prisma.SortOrder
   sessionType?: Prisma.SortOrder
   doctorId?: Prisma.SortOrder
   ruleId?: Prisma.SortOrder
@@ -477,19 +456,18 @@ export type AvailabilitySlotMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
   endTime?: Prisma.SortOrder
+  durationMin?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
   bookedCount?: Prisma.SortOrder
-  isStream?: Prisma.SortOrder
-  streamBufferMin?: Prisma.SortOrder
   sessionType?: Prisma.SortOrder
   doctorId?: Prisma.SortOrder
   ruleId?: Prisma.SortOrder
 }
 
 export type AvailabilitySlotSumOrderByAggregateInput = {
+  durationMin?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
   bookedCount?: Prisma.SortOrder
-  streamBufferMin?: Prisma.SortOrder
 }
 
 export type AvailabilitySlotScalarRelationFilter = {
@@ -607,10 +585,9 @@ export type AvailabilitySlotCreateWithoutDoctorInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
-  capacity?: number
+  durationMin: number
+  capacity: number
   bookedCount?: number
-  isStream?: boolean
-  streamBufferMin?: number | null
   sessionType: $Enums.SessionType
   rule?: Prisma.RecurringRuleCreateNestedOneWithoutSlotsInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutSlotInput
@@ -620,10 +597,9 @@ export type AvailabilitySlotUncheckedCreateWithoutDoctorInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
-  capacity?: number
+  durationMin: number
+  capacity: number
   bookedCount?: number
-  isStream?: boolean
-  streamBufferMin?: number | null
   sessionType: $Enums.SessionType
   ruleId?: string | null
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutSlotInput
@@ -662,10 +638,9 @@ export type AvailabilitySlotScalarWhereInput = {
   id?: Prisma.StringFilter<"AvailabilitySlot"> | string
   startTime?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
   endTime?: Prisma.DateTimeFilter<"AvailabilitySlot"> | Date | string
+  durationMin?: Prisma.IntFilter<"AvailabilitySlot"> | number
   capacity?: Prisma.IntFilter<"AvailabilitySlot"> | number
   bookedCount?: Prisma.IntFilter<"AvailabilitySlot"> | number
-  isStream?: Prisma.BoolFilter<"AvailabilitySlot"> | boolean
-  streamBufferMin?: Prisma.IntNullableFilter<"AvailabilitySlot"> | number | null
   sessionType?: Prisma.EnumSessionTypeFilter<"AvailabilitySlot"> | $Enums.SessionType
   doctorId?: Prisma.StringFilter<"AvailabilitySlot"> | string
   ruleId?: Prisma.StringNullableFilter<"AvailabilitySlot"> | string | null
@@ -675,10 +650,9 @@ export type AvailabilitySlotCreateWithoutAppointmentsInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
-  capacity?: number
+  durationMin: number
+  capacity: number
   bookedCount?: number
-  isStream?: boolean
-  streamBufferMin?: number | null
   sessionType: $Enums.SessionType
   doctor: Prisma.DoctorCreateNestedOneWithoutSlotsInput
   rule?: Prisma.RecurringRuleCreateNestedOneWithoutSlotsInput
@@ -688,10 +662,9 @@ export type AvailabilitySlotUncheckedCreateWithoutAppointmentsInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
-  capacity?: number
+  durationMin: number
+  capacity: number
   bookedCount?: number
-  isStream?: boolean
-  streamBufferMin?: number | null
   sessionType: $Enums.SessionType
   doctorId: string
   ruleId?: string | null
@@ -717,10 +690,9 @@ export type AvailabilitySlotUpdateWithoutAppointmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
   bookedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  streamBufferMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   doctor?: Prisma.DoctorUpdateOneRequiredWithoutSlotsNestedInput
   rule?: Prisma.RecurringRuleUpdateOneWithoutSlotsNestedInput
@@ -730,10 +702,9 @@ export type AvailabilitySlotUncheckedUpdateWithoutAppointmentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
   bookedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  streamBufferMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   doctorId?: Prisma.StringFieldUpdateOperationsInput | string
   ruleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -743,10 +714,9 @@ export type AvailabilitySlotCreateWithoutRuleInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
-  capacity?: number
+  durationMin: number
+  capacity: number
   bookedCount?: number
-  isStream?: boolean
-  streamBufferMin?: number | null
   sessionType: $Enums.SessionType
   doctor: Prisma.DoctorCreateNestedOneWithoutSlotsInput
   appointments?: Prisma.AppointmentCreateNestedManyWithoutSlotInput
@@ -756,10 +726,9 @@ export type AvailabilitySlotUncheckedCreateWithoutRuleInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
-  capacity?: number
+  durationMin: number
+  capacity: number
   bookedCount?: number
-  isStream?: boolean
-  streamBufferMin?: number | null
   sessionType: $Enums.SessionType
   doctorId: string
   appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutSlotInput
@@ -795,10 +764,9 @@ export type AvailabilitySlotCreateManyDoctorInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
-  capacity?: number
+  durationMin: number
+  capacity: number
   bookedCount?: number
-  isStream?: boolean
-  streamBufferMin?: number | null
   sessionType: $Enums.SessionType
   ruleId?: string | null
 }
@@ -807,10 +775,9 @@ export type AvailabilitySlotUpdateWithoutDoctorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
   bookedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  streamBufferMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   rule?: Prisma.RecurringRuleUpdateOneWithoutSlotsNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutSlotNestedInput
@@ -820,10 +787,9 @@ export type AvailabilitySlotUncheckedUpdateWithoutDoctorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
   bookedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  streamBufferMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   ruleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutSlotNestedInput
@@ -833,10 +799,9 @@ export type AvailabilitySlotUncheckedUpdateManyWithoutDoctorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
   bookedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  streamBufferMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   ruleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -845,10 +810,9 @@ export type AvailabilitySlotCreateManyRuleInput = {
   id?: string
   startTime: Date | string
   endTime: Date | string
-  capacity?: number
+  durationMin: number
+  capacity: number
   bookedCount?: number
-  isStream?: boolean
-  streamBufferMin?: number | null
   sessionType: $Enums.SessionType
   doctorId: string
 }
@@ -857,10 +821,9 @@ export type AvailabilitySlotUpdateWithoutRuleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
   bookedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  streamBufferMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   doctor?: Prisma.DoctorUpdateOneRequiredWithoutSlotsNestedInput
   appointments?: Prisma.AppointmentUpdateManyWithoutSlotNestedInput
@@ -870,10 +833,9 @@ export type AvailabilitySlotUncheckedUpdateWithoutRuleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
   bookedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  streamBufferMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   doctorId?: Prisma.StringFieldUpdateOperationsInput | string
   appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutSlotNestedInput
@@ -883,10 +845,9 @@ export type AvailabilitySlotUncheckedUpdateManyWithoutRuleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMin?: Prisma.IntFieldUpdateOperationsInput | number
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
   bookedCount?: Prisma.IntFieldUpdateOperationsInput | number
-  isStream?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  streamBufferMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   sessionType?: Prisma.EnumSessionTypeFieldUpdateOperationsInput | $Enums.SessionType
   doctorId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -926,10 +887,9 @@ export type AvailabilitySlotSelect<ExtArgs extends runtime.Types.Extensions.Inte
   id?: boolean
   startTime?: boolean
   endTime?: boolean
+  durationMin?: boolean
   capacity?: boolean
   bookedCount?: boolean
-  isStream?: boolean
-  streamBufferMin?: boolean
   sessionType?: boolean
   doctorId?: boolean
   ruleId?: boolean
@@ -943,10 +903,9 @@ export type AvailabilitySlotSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   id?: boolean
   startTime?: boolean
   endTime?: boolean
+  durationMin?: boolean
   capacity?: boolean
   bookedCount?: boolean
-  isStream?: boolean
-  streamBufferMin?: boolean
   sessionType?: boolean
   doctorId?: boolean
   ruleId?: boolean
@@ -958,10 +917,9 @@ export type AvailabilitySlotSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   id?: boolean
   startTime?: boolean
   endTime?: boolean
+  durationMin?: boolean
   capacity?: boolean
   bookedCount?: boolean
-  isStream?: boolean
-  streamBufferMin?: boolean
   sessionType?: boolean
   doctorId?: boolean
   ruleId?: boolean
@@ -973,16 +931,15 @@ export type AvailabilitySlotSelectScalar = {
   id?: boolean
   startTime?: boolean
   endTime?: boolean
+  durationMin?: boolean
   capacity?: boolean
   bookedCount?: boolean
-  isStream?: boolean
-  streamBufferMin?: boolean
   sessionType?: boolean
   doctorId?: boolean
   ruleId?: boolean
 }
 
-export type AvailabilitySlotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "startTime" | "endTime" | "capacity" | "bookedCount" | "isStream" | "streamBufferMin" | "sessionType" | "doctorId" | "ruleId", ExtArgs["result"]["availabilitySlot"]>
+export type AvailabilitySlotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "startTime" | "endTime" | "durationMin" | "capacity" | "bookedCount" | "sessionType" | "doctorId" | "ruleId", ExtArgs["result"]["availabilitySlot"]>
 export type AvailabilitySlotInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   doctor?: boolean | Prisma.DoctorDefaultArgs<ExtArgs>
   rule?: boolean | Prisma.AvailabilitySlot$ruleArgs<ExtArgs>
@@ -1009,10 +966,9 @@ export type $AvailabilitySlotPayload<ExtArgs extends runtime.Types.Extensions.In
     id: string
     startTime: Date
     endTime: Date
+    durationMin: number
     capacity: number
     bookedCount: number
-    isStream: boolean
-    streamBufferMin: number | null
     sessionType: $Enums.SessionType
     doctorId: string
     ruleId: string | null
@@ -1445,10 +1401,9 @@ export interface AvailabilitySlotFieldRefs {
   readonly id: Prisma.FieldRef<"AvailabilitySlot", 'String'>
   readonly startTime: Prisma.FieldRef<"AvailabilitySlot", 'DateTime'>
   readonly endTime: Prisma.FieldRef<"AvailabilitySlot", 'DateTime'>
+  readonly durationMin: Prisma.FieldRef<"AvailabilitySlot", 'Int'>
   readonly capacity: Prisma.FieldRef<"AvailabilitySlot", 'Int'>
   readonly bookedCount: Prisma.FieldRef<"AvailabilitySlot", 'Int'>
-  readonly isStream: Prisma.FieldRef<"AvailabilitySlot", 'Boolean'>
-  readonly streamBufferMin: Prisma.FieldRef<"AvailabilitySlot", 'Int'>
   readonly sessionType: Prisma.FieldRef<"AvailabilitySlot", 'SessionType'>
   readonly doctorId: Prisma.FieldRef<"AvailabilitySlot", 'String'>
   readonly ruleId: Prisma.FieldRef<"AvailabilitySlot", 'String'>
