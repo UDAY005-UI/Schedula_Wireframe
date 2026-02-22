@@ -1,5 +1,5 @@
-import { BadRequestException, ConflictException, HttpException, Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
-import { PrismaService } from "src/prisma/prisma.service";
+import { BadRequestException, HttpException, Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
+import { PrismaService } from "../prisma/prisma.service";
 import { CreateAvailabilitySlotDto } from "./dto/create-availabilitySlot.dto";
 import { AvailabilityDto } from "./dto/availability.dto";
 import { CreateRecurringRuleDto } from "./dto/create-recurringRule.dto";

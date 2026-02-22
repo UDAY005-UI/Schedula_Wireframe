@@ -1,6 +1,6 @@
 import { Controller, Post, Req, UseGuards, BadRequestException, Body, ForbiddenException } from "@nestjs/common";
 import { PatientService } from "./patient.service";
-import { JwtAuthGuard } from "src/auth/jwt.guard";
+import { JwtAuthGuard } from "../auth/jwt.guard";
 
 @Controller('patient')
 export class PatientController {

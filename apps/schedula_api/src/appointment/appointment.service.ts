@@ -1,7 +1,7 @@
 import { BadRequestException, HttpException, Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
-import { PrismaService } from "src/prisma/prisma.service";
+import { PrismaService } from "../prisma/prisma.service";
 import { CreateAppointmentDto } from "./dto/create-appointment.dto";
-import { AppointmentStatus } from "src/generated/prisma/enums";
+import { AppointmentStatus } from "@prisma/client";
 import { RescheduleAppointmentDto } from "./dto/reschedule-appointment.dto";
 
 @Injectable()

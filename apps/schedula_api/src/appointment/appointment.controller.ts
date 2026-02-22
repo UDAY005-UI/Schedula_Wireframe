@@ -3,7 +3,7 @@ import { AppointmentService } from "./appointment.service";
 import { CreateAppointmentDto } from "./dto/create-appointment.dto";
 import { AppointmentIdDto } from "./dto/appointment.dto";
 import { RescheduleAppointmentDto } from "./dto/reschedule-appointment.dto";
-import { JwtAuthGuard } from "src/auth/jwt.guard";
+import { JwtAuthGuard } from "../auth/jwt.guard";
 
 @Controller('appointment')
 export class AppointmentController {

@@ -1,5 +1,5 @@
 import { IsUUID, IsEnum, IsString, IsOptional, IsNumber } from 'class-validator';
-import { ConsultingType } from 'src/generated/prisma/enums';
+import { ConsultingType } from '@prisma/client';
 
 export class CreateAppointmentDto {
 
