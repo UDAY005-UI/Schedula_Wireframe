@@ -5,7 +5,7 @@ import {
   IsInt,
   Min,
 } from 'class-validator';
-import { SessionType } from 'src/generated/prisma/enums';
+import { SessionType } from '@prisma/client';
 
 export class CreateAvailabilitySlotDto {
 

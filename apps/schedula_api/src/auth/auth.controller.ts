@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { GoogleAuthGuard } from './google.guard';
-import { JwtAuthGuard } from './jwt.guard';
 import { JwtService } from '@nestjs/jwt';
 import { Response } from 'express';
 

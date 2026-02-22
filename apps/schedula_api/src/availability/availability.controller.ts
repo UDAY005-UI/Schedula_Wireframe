@@ -3,7 +3,7 @@ import { AvailabilityDto } from "./dto/availability.dto";
 import { CreateAvailabilitySlotDto } from "./dto/create-availabilitySlot.dto";
 import { CreateRecurringRuleDto } from "./dto/create-recurringRule.dto";
 import { AvailabilityService } from "./availability.service";
-import { JwtAuthGuard } from "src/auth/jwt.guard";
+import { JwtAuthGuard } from "../auth/jwt.guard";
 
 @Controller('availability')
 export class AvailabilityController {
