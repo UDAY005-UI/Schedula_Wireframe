@@ -35,12 +35,10 @@ export class AvailabilityService {
         throw new NotFoundException('Doctor not found');
       }
 
-      // Compute endTime from duration
       const endTime = new Date(
         dto.startTime.getTime() + dto.durationMin * 60 * 1000,
       );
 
-      // Check overlap
       const overlap = await this.prisma.availabilitySlot.findFirst({
         where: {
           doctorId: doctor.id,
@@ -76,7 +74,7 @@ export class AvailabilityService {
 
   async getAvailableSlots(userId: string, dto: AvailabilityDto) {
     try {
-      // Validate user exists
+
       const user = await this.prisma.user.findUnique({
         where: { id: userId },
         select: { id: true },
@@ -88,7 +86,6 @@ export class AvailabilityService {
 
       const now = new Date();
 
-      // Fetch only relevant future slots
       const slots = await this.prisma.availabilitySlot.findMany({
         where: {
           doctorId: dto.doctorId,
@@ -108,7 +105,6 @@ export class AvailabilityService {
         },
       });
 
-      // Filter slots that still have capacity
       return slots.filter(slot => slot.bookedCount < slot.capacity);
 
     } catch (err) {
@@ -134,7 +130,6 @@ export class AvailabilityService {
         ? this.timeToMinFromDate(dto.endTime)
         : null;
 
-      // ===== VALIDATION =====
       if (!dto.isStream) {
         if (!dto.endTime) {
           throw new BadRequestException('endTime is required for wave scheduling');
@@ -185,7 +180,6 @@ export class AvailabilityService {
         const baseDate = new Date(d);
         baseDate.setHours(0, 0, 0, 0);
 
-        // ===== STREAM =====
         if (dto.isStream) {
           const start = new Date(baseDate);
           start.setMinutes(startMin);
@@ -206,7 +200,6 @@ export class AvailabilityService {
           });
         }
 
-        // ===== WAVE =====
         else {
           let currentMin = startMin;
 

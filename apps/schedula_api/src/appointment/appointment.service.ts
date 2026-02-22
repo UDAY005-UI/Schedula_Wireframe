@@ -35,7 +35,18 @@ export class AppointmentService {
                     throw new BadRequestException('Slot already started');
                 }
 
-                // Atomic capacity check
+                const existingAppointment = await tx.appointment.findFirst({
+                    where: {
+                        patientId: patient.id,
+                        slotId: slot.id,
+                        status: AppointmentStatus.BOOKED,
+                    },
+                });
+
+                if (existingAppointment) {
+                    throw new BadRequestException('You have already booked this slot');
+                }
+
                 const updated = await tx.availabilitySlot.updateMany({
                     where: {
                         id: slot.id,
@@ -77,7 +88,6 @@ export class AppointmentService {
             throw new InternalServerErrorException('Internal server error');
         }
     }
-
 
     async markAppointmentCompleted(userId: string, appointmentId: string) {
         try {
@@ -224,7 +234,6 @@ export class AppointmentService {
                     );
                 }
 
-                // Step 1: Increment new slot safely
                 const increment = await tx.availabilitySlot.updateMany({
                     where: {
                         id: newSlot.id,
@@ -239,13 +248,11 @@ export class AppointmentService {
                     throw new BadRequestException("New slot is full");
                 }
 
-                // Step 2: Decrement old slot
                 await tx.availabilitySlot.update({
                     where: { id: oldSlot.id },
                     data: { bookedCount: { decrement: 1 } },
                 });
 
-                // Step 3: Update appointment
                 await tx.appointment.update({
                     where: { id: dto.appointmentId },
                     data: {
