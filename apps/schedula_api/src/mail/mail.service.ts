@@ -1,22 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import * as nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 @Injectable()
 export class MailService {
-  private transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS,
-    },
-  });
+  private resend = new Resend(`${process.env.RESEND_API_KEY}`);
 
   async sendOtpEmail(receiversEmail: string, otp: string) {
-    await this.transporter.sendMail({
-      from: `"Auth Service" <${process.env.MAIL_USER}>`,
-      to: [`${receiversEmail}`],
+    await this.resend.emails.send({
+      from: 'Auth Service <onboarding@resend.dev>', 
+      to: receiversEmail,
       subject: 'Your OTP Code',
       html: `
         <h2>Verification Code</h2>
