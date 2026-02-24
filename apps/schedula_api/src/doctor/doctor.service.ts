@@ -14,7 +14,7 @@ export class DoctorService {
             throw new NotFoundException('User not found');
         }
 
-        const doctor = await this.prisma.doctor.upsert({
+        await this.prisma.doctor.upsert({
             where: { userId: user.id },
             update: {},
             create: {
