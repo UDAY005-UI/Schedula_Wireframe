@@ -1,5 +1,5 @@
 generator client {
-  provider     = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -7,26 +7,22 @@ datasource db {
 }
 
 model User {
-  id       String    @id @default(uuid())
-  name     String
-  dob      DateTime?
-  mobileNo String?   @unique
-  gender   String?
-  email    String    @unique
-  googleId String?   @unique
-
-  isVerified Boolean @default(false)
-
-  otpHash     String?
-  otpExpiry   DateTime?
-  otpAttempts Int       @default(0)
-
-  refreshTokenHash String?
+  id               String    @id @default(uuid())
+  name             String
+  dob              DateTime?
+  mobileNo         String?   @unique
+  gender           String?
+  email            String    @unique
+  googleId         String?   @unique
+  role             UserRole
+  isVerified       Boolean   @default(false)
+  otpAttempts      Int       @default(0)
+  otpExpiry        DateTime?
+  otpHash          String?
   refreshExpiresAt DateTime?
-
-  role    UserRole
-  patient Patient?
-  doctor  Doctor?
+  refreshTokenHash String?
+  doctor           Doctor?
+  patient          Patient?
 }
 
 model Patient {
@@ -41,48 +37,38 @@ model Patient {
 }
 
 model Doctor {
-  id            String             @id @default(uuid())
-  userId        String             @unique
-  name          String
-  experience    Int?
-  fees          Float?
-  profileNote   String?
-  specializesIn String[]
-  services      String[]
-  appointments  Appointment[]
-  slots         AvailabilitySlot[]
-  user          User               @relation(fields: [userId], references: [id])
-
+  id             String             @id @default(uuid())
+  name           String
+  experience     Int?
+  fees           Float?
+  profileNote    String?
+  specializesIn  String[]
+  services       String[]
+  userId         String             @unique
+  appointments   Appointment[]
+  slots          AvailabilitySlot[]
+  user           User               @relation(fields: [userId], references: [id])
   recurringRules RecurringRule[]
 }
 
 model AvailabilitySlot {
-  id String @id @default(uuid())
-
-  startTime DateTime
-  endTime   DateTime
-
-  durationMin Int
-
-  capacity    Int
-  bookedCount Int @default(0)
-
-  sessionType SessionType
-
-  doctorId String
-  doctor   Doctor @relation(fields: [doctorId], references: [id])
-
-  ruleId String?
-  rule   RecurringRule? @relation(fields: [ruleId], references: [id])
-
+  id           String         @id @default(uuid())
+  sessionType  SessionType
+  doctorId     String
+  bookedCount  Int            @default(0)
+  capacity     Int
+  ruleId       String?
+  startTime    DateTime
+  endTime      DateTime
+  durationMin  Int
   appointments Appointment[]
+  doctor       Doctor         @relation(fields: [doctorId], references: [id])
+  rule         RecurringRule? @relation(fields: [ruleId], references: [id])
 }
 
 model Appointment {
   id              String            @id @default(uuid())
   appointmentDate DateTime
-  appointmentTime DateTime
-  consultingType  ConsultingType
   complaint       String
   visitType       String
   weight          Float?
@@ -91,33 +77,27 @@ model Appointment {
   patientId       String
   doctorId        String
   slotId          String
+  consultingType  ConsultingType
+  appointmentTime DateTime
   doctor          Doctor            @relation(fields: [doctorId], references: [id])
   patient         Patient           @relation(fields: [patientId], references: [id])
   slot            AvailabilitySlot  @relation(fields: [slotId], references: [id])
 }
 
 model RecurringRule {
-  id String @id @default(uuid())
-
-  doctorId String
-  doctor   Doctor @relation(fields: [doctorId], references: [id])
-
-  isStream Boolean @default(true)
-
+  id          String             @id @default(uuid())
+  doctorId    String
   weekdayMask Int
-
-  startMin Int
-  endMin   Int?
-
-  durationMin Int
+  startMin    Int
   capacity    Int
-
-  validFrom  DateTime
-  validUntil DateTime?
-
+  validFrom   DateTime
+  validUntil  DateTime?
   sessionType SessionType
-
-  slots AvailabilitySlot[]
+  durationMin Int
+  endMin      Int?
+  isStream    Boolean            @default(true)
+  slots       AvailabilitySlot[]
+  doctor      Doctor             @relation(fields: [doctorId], references: [id])
 }
 
 enum UserRole {
